@@ -55,7 +55,7 @@ export function useFetchNodes() {
       }
 
       try {
-        const res = await fetch("/node_models.json");
+        const res = await fetch(import.meta.env.BASE_URL + "node_models.json");
         if (!isMounted) return;
         res.ok
           ? safeSet(
