@@ -1,7 +1,7 @@
 # Core Concepts
 
 Read along to find out more about the core concepts behind AutoAPMS Studio and Behavior Trees.
-For the technical XML format, see [XML Format](xml-format.md).
+For the technical XML format, see [XML Format](../reference/xml-format.md).
 
 ## Node Models
 
