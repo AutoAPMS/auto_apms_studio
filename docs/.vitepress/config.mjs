@@ -49,7 +49,7 @@ export default withMermaid(defineConfig({
       { text: 'Home', link: '/' },
       { text: 'Live Demo', link: 'https://autoapms.github.io/auto_apms_studio/' },
       { text: 'User Guide', link: '/user-guide/introduction/introduction' },
-      { text: 'API Docs', link: '/dev-docs/introduction' }
+      { text: 'Dev Guide', link: '/dev-guide/introduction' }
     ],
 
     sidebar: {
@@ -77,35 +77,35 @@ export default withMermaid(defineConfig({
           ]
         }
       ],
-      '/dev-docs/': [
+      '/dev-guide/': [
         {
           text: 'Overview',
           items: [
-            { text: 'Introduction', link: '/dev-docs/introduction' },
-            { text: 'Architecture', link: '/dev-docs/architecture' },
-            { text: 'Project Structure', link: '/dev-docs/structure' },
+            { text: 'Introduction', link: '/dev-guide/introduction' },
+            { text: 'Architecture', link: '/dev-guide/architecture' },
+            { text: 'Project Structure', link: '/dev-guide/structure' },
           ]
         },
         {
           text: 'API Reference',
           items: [
-            { text: 'REST API', link: '/dev-docs/api/rest' },
-            { text: 'WebSocket', link: '/dev-docs/api/websocket' },
+            { text: 'REST API', link: '/dev-guide/api/rest' },
+            { text: 'WebSocket', link: '/dev-guide/api/websocket' },
           ]
         },
         {
           text: 'Guides',
           items: [
-            { text: 'Migrating from Groot2', link: '/dev-docs/guides/groot2-migration' },
-            { text: 'Importing Node Models', link: '/dev-docs/guides/importing-node-models' },
+            { text: 'Migrating from Groot2', link: '/dev-guide/guides/groot2-migration' },
+            { text: 'Importing Node Models', link: '/dev-guide/guides/importing-node-models' },
           ]
         },
         {
           text: 'Contributing',
           items: [
-            { text: 'Dev Setup', link: '/dev-docs/contributing/dev-setup' },
-            { text: 'Guidelines', link: '/dev-docs/contributing/guidelines' },
-            { text: 'How to Contribute', link: '/dev-docs/contributing/contributing' },
+            { text: 'Dev Setup', link: '/dev-guide/contributing/dev-setup' },
+            { text: 'Guidelines', link: '/dev-guide/contributing/guidelines' },
+            { text: 'How to Contribute', link: '/dev-guide/contributing/contributing' },
           ]
         }
       ]
