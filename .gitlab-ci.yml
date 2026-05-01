@@ -1,114 +1,139 @@
-include:
-  - remote: https://raw.githubusercontent.com/TUDA-FSR/docker-ros/refs/heads/main/.gitlab-ci/docker-ros.yml
+name: CI
 
-.npm-cache: &npm-cache
-  cache:
-    key:
-      files:
-        - web/package-lock.json
-      prefix: npm-shared
-    paths:
-      - web/node_modules
-      - web/.npm
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: ["**"]
 
-variables:
-  BASE_IMAGE: registry.git.rwth-aachen.de/orcas/util/auto_apms_vendor:jazzy
-  TARGET: run
-  COMMAND: ros2 launch auto_apms_studio studio_launch.py
-  IMAGE_TAG: jazzy
+jobs:
+  format_check_frontend:
+    name: Format check (frontend)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
 
-format-check-frontend:
-  image: node:24
-  stage: .pre
-  <<: *npm-cache
-  before_script:
-    - cd web
-    - npm ci
-  script:
-    - npm run format:check
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH
-  allow_failure: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
 
-format-check-backend:
-  image: python:3.12
-  stage: .pre
-  cache:
-    key:
-      files:
-        - auto_apms_studio/backend/pyproject.toml
-      prefix: pip-format-backend
-    paths:
-      - .cache/pip
-  before_script:
-    - cd auto_apms_studio/backend
-    - pip install --cache-dir=.cache/pip ruff
-  script:
-    - ruff format --check .
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH
-  allow_failure: false
+      - name: Install dependencies
+        run: npm ci
 
-backend-test:
-  image: python:3.12
-  stage: .pre
-  cache:
-    key:
-      files:
-        - auto_apms_studio/backend/pyproject.toml
-      prefix: pip-backend
-    paths:
-      - .cache/pip
-  before_script:
-    - cd auto_apms_studio/backend
-    - pip install --cache-dir=.cache/pip -e .
-    - export PYTHONPATH="${CI_PROJECT_DIR}:${PYTHONPATH}"
-  script:
-    - pytest tests/ -v
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH
-  allow_failure: false
+      - name: Check formatting
+        run: npm run format:check
 
-frontend-test:
-  image: node:24
-  stage: .pre
-  <<: *npm-cache
-  before_script:
-    - cd web
-    - npm ci --cache .npm --prefer-offline
-  script:
-    - npm run test:run
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH
-  allow_failure: false
+  format_check_backend:
+    name: Format check (backend)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: auto_apms_studio/backend
+    steps:
+      - uses: actions/checkout@v4
 
-deploy-pages:
-  image: node:24
-  stage: .post
-  pages:
-    publish: public
-  cache:
-    key:
-      files:
-        - package-lock.json
-      prefix: npm
-    paths:
-      - web/node_modules/
-      - docs/
-  before_script: ""
-  script:
-    - (cd web && npm install && npm run build)
-    - npm install
-    - npm run docs:build
-    - mkdir -p public
-    - cp -a web/dist/. public/
-    - cp -a docs/.vitepress/dist/. public/docs/
-  artifacts:
-    paths:
-      - public
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: auto_apms_studio/backend/pyproject.toml
+
+      - name: Install ruff
+        run: pip install ruff
+
+      - name: Check formatting
+        run: ruff format --check .
+
+  backend_test:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: auto_apms_studio/backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: auto_apms_studio/backend/pyproject.toml
+
+      - name: Install package
+        run: pip install -e .
+
+      - name: Run pytest
+        run: pytest tests/ -v
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+
+  frontend_test:
+    name: Frontend tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --cache .npm --prefer-offline
+
+      - name: Run tests
+        run: npm run test:run
+
+  deploy_pages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    # 1:1 mit GitLab: kein needs:, läuft unabhängig von den anderen Jobs
+    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && github.event_name == 'push'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Build frontend
+        working-directory: web
+        run: |
+          npm install
+          npm run build
+
+      - name: Build docs
+        run: |
+          npm install
+          npm run docs:build
+
+      - name: Assemble pages output
+        run: |
+          mkdir -p public
+          cp -a web/dist/. public/
+          cp -a docs/.vitepress/dist/. public/docs/
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
