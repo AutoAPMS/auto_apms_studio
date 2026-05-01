@@ -1,0 +1,4079 @@
+[
+  {
+    "node_name": "Error",
+    "class_name": "auto_apms_behavior_tree::ThrowException",
+    "description": "Throws an exception to interrupt behavior tree execution",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "message",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Error message. Creates a generic error message if empty."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameter",
+    "class_name": "auto_apms_behavior_tree::GetParameter",
+    "description": "Retrieves a parameter value from a ROS2 node. The type of the output will be BT::Any and the user must make sure to cast it to the correct type when using it.",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "BT::AnyTypeAllowed",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterBool",
+    "class_name": "auto_apms_behavior_tree::GetParameterBool",
+    "description": "Retrieves a boolean parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "bool",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterBoolVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterBoolVec",
+    "description": "Retrieves a boolean array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<bool, std::allocator<bool> >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterByteVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterByteVec",
+    "description": "Retrieves a byte array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<unsigned char, std::allocator<unsigned char> >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterDouble",
+    "class_name": "auto_apms_behavior_tree::GetParameterDouble",
+    "description": "Retrieves a double precision floating point parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "double",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterDoubleVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterDoubleVec",
+    "description": "Retrieves a double precision floating point array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<double, std::allocator<double> >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterInt",
+    "class_name": "auto_apms_behavior_tree::GetParameterInt",
+    "description": "Retrieves an integer parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "int",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterIntVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterIntVec",
+    "description": "Retrieves an integer array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<int, std::allocator<int> >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterString",
+    "class_name": "auto_apms_behavior_tree::GetParameterString",
+    "description": "Retrieves a string parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterStringVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterStringVec",
+    "description": "Retrieves a string array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "HaltExecutor",
+    "class_name": "auto_apms_behavior_tree::HaltExecutor",
+    "description": "Halts an executor by sending a halt command",
+    "topic": "(input:executor)/cmd",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor to command."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "HasParameter",
+    "class_name": "auto_apms_behavior_tree::HasParameter",
+    "description": "Checks if a ROS2 node has a specific parameter defined",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Logger",
+    "class_name": "auto_apms_behavior_tree::Logger",
+    "description": "Logs a message to the ROS2 logging system",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "message",
+        "type": "BT::AnyTypeAllowed",
+        "default": "",
+        "has_default": false,
+        "description": "Message to be logged via rclcpp::Logger."
+      },
+      {
+        "name": "level",
+        "type": "std::string",
+        "default": "INFO",
+        "has_default": true,
+        "description": "Logger level. Must be one of [UNSET, DEBUG, INFO, WARN, ERROR, FATAL] but is not case sensitive."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "PauseExecutor",
+    "class_name": "auto_apms_behavior_tree::PauseExecutor",
+    "description": "Pauses an executor by sending a pause command",
+    "topic": "(input:executor)/cmd",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor to command."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "PublishPose",
+    "class_name": "auto_apms_behavior_tree::PublishPose",
+    "description": "Publishes a geometry_msgs/PoseStamped message with position and orientation",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.CONDITION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "x",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target x position in meters."
+      },
+      {
+        "name": "y",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target y position in meters."
+      },
+      {
+        "name": "z",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target z position in meters."
+      },
+      {
+        "name": "frame_id",
+        "type": "std::string",
+        "default": "map",
+        "has_default": true,
+        "description": "Frame ID for the pose."
+      },
+      {
+        "name": "roll",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target roll angle in radians (or degrees if use_degrees is true)."
+      },
+      {
+        "name": "use_degrees",
+        "type": "bool",
+        "default": "false",
+        "has_default": true,
+        "description": "If true, interpret roll, pitch, yaw as degrees instead of radians."
+      },
+      {
+        "name": "pitch",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target pitch angle in radians (or degrees if use_degrees is true)."
+      },
+      {
+        "name": "yaw",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target yaw angle in radians (or degrees if use_degrees is true)."
+      },
+      {
+        "name": "topic",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the ROS 2 topic to publish to."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "ResumeExecutor",
+    "class_name": "auto_apms_behavior_tree::ResumeExecutor",
+    "description": "Resumes a paused executor by sending a resume command",
+    "topic": "(input:executor)/cmd",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor to command."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetBool",
+    "class_name": "auto_apms_behavior_tree::SetBool",
+    "description": "Sets a std_srvs/SetBool service with the given boolean value",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "data",
+        "type": "bool",
+        "default": "",
+        "has_default": false,
+        "description": "Boolean data to set (true, false, 1, 0)."
+      },
+      {
+        "name": "topic",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the ROS 2 service."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "message",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Service response: informational message."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetEmpty",
+    "class_name": "auto_apms_behavior_tree::SetEmpty",
+    "description": "Calls a std_srvs/Empty service",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "topic",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the ROS 2 service."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameter",
+    "class_name": "auto_apms_behavior_tree::SetParameter",
+    "description": "Sets a parameter on a ROS2 node. This node can infer the type from a blackboard pointer. For passing a string literal as value, use one of the statically typed versions.",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "BT::AnyTypeAllowed",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterBool",
+    "class_name": "auto_apms_behavior_tree::SetParameterBool",
+    "description": "Sets a boolean parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "bool",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterBoolVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterBoolVec",
+    "description": "Sets a boolean array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<bool, std::allocator<bool> >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterByteVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterByteVec",
+    "description": "Sets a byte array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<unsigned char, std::allocator<unsigned char> >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterDouble",
+    "class_name": "auto_apms_behavior_tree::SetParameterDouble",
+    "description": "Sets a double precision floating point parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "double",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterDoubleVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterDoubleVec",
+    "description": "Sets a double precision floating point array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<double, std::allocator<double> >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterInt",
+    "class_name": "auto_apms_behavior_tree::SetParameterInt",
+    "description": "Sets an integer parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "int",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterIntVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterIntVec",
+    "description": "Sets an integer array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<int, std::allocator<int> >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterString",
+    "class_name": "auto_apms_behavior_tree::SetParameterString",
+    "description": "Sets a string parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterStringVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterStringVec",
+    "description": "Sets a string array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetTrigger",
+    "class_name": "auto_apms_behavior_tree::SetTrigger",
+    "description": "Calls a std_srvs/Trigger service",
+    "topic": "(input:topic)",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "topic",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the ROS 2 service."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "message",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Service response: informational message."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "StartExecutor",
+    "class_name": "auto_apms_behavior_tree::StartExecutor",
+    "description": "Starts an executor by calling its start action",
+    "topic": "(input:executor)/start",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor responsible for building and running the specified behavior tree."
+      },
+      {
+        "name": "build_request",
+        "type": "std::string",
+        "default": "",
+        "has_default": true,
+        "description": "String passed to the tree build handler defining which tree is to be built."
+      },
+      {
+        "name": "build_handler",
+        "type": "std::string",
+        "default": "",
+        "has_default": true,
+        "description": "Fully qualified class name of the build handler that is supposed to take care of the request. If empty, use the current one."
+      },
+      {
+        "name": "node_manifest",
+        "type": "std::string",
+        "default": "",
+        "has_default": true,
+        "description": "YAML/JSON formatted string encoding the name and the registration options for the tree nodes supposed to be loaded before building the tree."
+      },
+      {
+        "name": "entry_point",
+        "type": "std::string",
+        "default": "",
+        "has_default": true,
+        "description": "Entry point for the behavior. If empty, let the build handler determine it automatically."
+      },
+      {
+        "name": "clear_blackboard",
+        "type": "bool",
+        "default": "true",
+        "has_default": true,
+        "description": "Boolean flag wether to clear the existing blackboard entries before the execution starts or not."
+      },
+      {
+        "name": "attach",
+        "type": "bool",
+        "default": "true",
+        "has_default": true,
+        "description": "Boolean flag wether to attach to the execution process or start in detached mode."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "TerminateExecutor",
+    "class_name": "auto_apms_behavior_tree::TerminateExecutor",
+    "description": "Terminates an executor by sending a terminate command",
+    "topic": "(input:executor)/cmd",
+    "package": "auto_apms_behavior_tree",
+    "metadata_id": "behavior_tree_nodes",
+    "pid": "auto_apms_behavior_tree::behavior_tree_nodes",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor to command."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Error",
+    "class_name": "auto_apms_behavior_tree::ThrowException",
+    "description": "Throws an exception to interrupt behavior tree execution",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "message",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Error message. Creates a generic error message if empty."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameter",
+    "class_name": "auto_apms_behavior_tree::GetParameter",
+    "description": "Retrieves a parameter value from a ROS2 node. The type of the output will be BT::Any and the user must make sure to cast it to the correct type when using it.",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "BT::AnyTypeAllowed",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterBool",
+    "class_name": "auto_apms_behavior_tree::GetParameterBool",
+    "description": "Retrieves a boolean parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "bool",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterBoolVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterBoolVec",
+    "description": "Retrieves a boolean array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<bool, std::allocator<bool> >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterByteVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterByteVec",
+    "description": "Retrieves a byte array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<unsigned char, std::allocator<unsigned char> >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterDouble",
+    "class_name": "auto_apms_behavior_tree::GetParameterDouble",
+    "description": "Retrieves a double precision floating point parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "double",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterDoubleVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterDoubleVec",
+    "description": "Retrieves a double precision floating point array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<double, std::allocator<double> >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterInt",
+    "class_name": "auto_apms_behavior_tree::GetParameterInt",
+    "description": "Retrieves an integer parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "int",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterIntVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterIntVec",
+    "description": "Retrieves an integer array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<int, std::allocator<int> >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterString",
+    "class_name": "auto_apms_behavior_tree::GetParameterString",
+    "description": "Retrieves a string parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "GetParameterStringVec",
+    "class_name": "auto_apms_behavior_tree::GetParameterStringVec",
+    "description": "Retrieves a string array parameter value from a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to get."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >",
+        "default": "",
+        "has_default": false,
+        "description": "Output port for the parameter's value."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "HaltExecutor",
+    "class_name": "auto_apms_behavior_tree::HaltExecutor",
+    "description": "Halts an executor by sending a halt command",
+    "topic": "(input:executor)/cmd",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor to command."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "HasParameter",
+    "class_name": "auto_apms_behavior_tree::HasParameter",
+    "description": "Checks if a ROS2 node has a specific parameter defined",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Logger",
+    "class_name": "auto_apms_behavior_tree::Logger",
+    "description": "Logs a message to the ROS2 logging system",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "message",
+        "type": "BT::AnyTypeAllowed",
+        "default": "",
+        "has_default": false,
+        "description": "Message to be logged via rclcpp::Logger."
+      },
+      {
+        "name": "level",
+        "type": "std::string",
+        "default": "INFO",
+        "has_default": true,
+        "description": "Logger level. Must be one of [UNSET, DEBUG, INFO, WARN, ERROR, FATAL] but is not case sensitive."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "PauseExecutor",
+    "class_name": "auto_apms_behavior_tree::PauseExecutor",
+    "description": "Pauses an executor by sending a pause command",
+    "topic": "(input:executor)/cmd",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor to command."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "PublishGoToPosition",
+    "class_name": "auto_apms_behavior_tree::PublishPose",
+    "description": "Publishes a go-to position command to the drone",
+    "topic": "/(input:drone)/goto_trajectory_generator/target_pose",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {
+      "topic": "drone (Name of the target drone.)"
+    },
+    "port_default": {},
+    "hidden_ports": [
+      "roll",
+      "pitch"
+    ],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.CONDITION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "x",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target x position in meters."
+      },
+      {
+        "name": "y",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target y position in meters."
+      },
+      {
+        "name": "z",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target z position in meters."
+      },
+      {
+        "name": "frame_id",
+        "type": "std::string",
+        "default": "map",
+        "has_default": true,
+        "description": "Frame ID for the pose."
+      },
+      {
+        "name": "use_degrees",
+        "type": "bool",
+        "default": "false",
+        "has_default": true,
+        "description": "If true, interpret roll, pitch, yaw as degrees instead of radians."
+      },
+      {
+        "name": "drone",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the target drone."
+      },
+      {
+        "name": "yaw",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target yaw angle in radians (or degrees if use_degrees is true)."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "PublishPose",
+    "class_name": "auto_apms_behavior_tree::PublishPose",
+    "description": "Publishes a geometry_msgs/PoseStamped message with position and orientation",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.CONDITION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "x",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target x position in meters."
+      },
+      {
+        "name": "y",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target y position in meters."
+      },
+      {
+        "name": "z",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target z position in meters."
+      },
+      {
+        "name": "frame_id",
+        "type": "std::string",
+        "default": "map",
+        "has_default": true,
+        "description": "Frame ID for the pose."
+      },
+      {
+        "name": "roll",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target roll angle in radians (or degrees if use_degrees is true)."
+      },
+      {
+        "name": "use_degrees",
+        "type": "bool",
+        "default": "false",
+        "has_default": true,
+        "description": "If true, interpret roll, pitch, yaw as degrees instead of radians."
+      },
+      {
+        "name": "pitch",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target pitch angle in radians (or degrees if use_degrees is true)."
+      },
+      {
+        "name": "yaw",
+        "type": "double",
+        "default": "0.000000",
+        "has_default": true,
+        "description": "Target yaw angle in radians (or degrees if use_degrees is true)."
+      },
+      {
+        "name": "topic",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the ROS 2 topic to publish to."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "ResumeExecutor",
+    "class_name": "auto_apms_behavior_tree::ResumeExecutor",
+    "description": "Resumes a paused executor by sending a resume command",
+    "topic": "(input:executor)/cmd",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor to command."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetBool",
+    "class_name": "auto_apms_behavior_tree::SetBool",
+    "description": "Sets a std_srvs/SetBool service with the given boolean value",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "data",
+        "type": "bool",
+        "default": "",
+        "has_default": false,
+        "description": "Boolean data to set (true, false, 1, 0)."
+      },
+      {
+        "name": "topic",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the ROS 2 service."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "message",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Service response: informational message."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetEmpty",
+    "class_name": "auto_apms_behavior_tree::SetEmpty",
+    "description": "Calls a std_srvs/Empty service",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "topic",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the ROS 2 service."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameter",
+    "class_name": "auto_apms_behavior_tree::SetParameter",
+    "description": "Sets a parameter on a ROS2 node. This node can infer the type from a blackboard pointer. For passing a string literal as value, use one of the statically typed versions.",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "BT::AnyTypeAllowed",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterBool",
+    "class_name": "auto_apms_behavior_tree::SetParameterBool",
+    "description": "Sets a boolean parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "bool",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterBoolVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterBoolVec",
+    "description": "Sets a boolean array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<bool, std::allocator<bool> >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterByteVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterByteVec",
+    "description": "Sets a byte array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<unsigned char, std::allocator<unsigned char> >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterDouble",
+    "class_name": "auto_apms_behavior_tree::SetParameterDouble",
+    "description": "Sets a double precision floating point parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "double",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterDoubleVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterDoubleVec",
+    "description": "Sets a double precision floating point array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<double, std::allocator<double> >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterInt",
+    "class_name": "auto_apms_behavior_tree::SetParameterInt",
+    "description": "Sets an integer parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "int",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterIntVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterIntVec",
+    "description": "Sets an integer array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<int, std::allocator<int> >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterString",
+    "class_name": "auto_apms_behavior_tree::SetParameterString",
+    "description": "Sets a string parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetParameterStringVec",
+    "class_name": "auto_apms_behavior_tree::SetParameterStringVec",
+    "description": "Sets a string array parameter on a ROS2 node",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "parameter",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the parameter to be set."
+      },
+      {
+        "name": "value",
+        "type": "std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >",
+        "default": "",
+        "has_default": false,
+        "description": "Value of the parameter to be set."
+      },
+      {
+        "name": "node",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the targeted ROS 2 node. Leave empty to target this executor's node."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetTrigger",
+    "class_name": "auto_apms_behavior_tree::SetTrigger",
+    "description": "Calls a std_srvs/Trigger service",
+    "topic": "(input:topic)",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "topic",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the ROS 2 service."
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "message",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Service response: informational message."
+      }
+    ],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "StartExecutor",
+    "class_name": "auto_apms_behavior_tree::StartExecutor",
+    "description": "Starts an executor by calling its start action",
+    "topic": "(input:executor)/start",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor responsible for building and running the specified behavior tree."
+      },
+      {
+        "name": "build_request",
+        "type": "std::string",
+        "default": "",
+        "has_default": true,
+        "description": "String passed to the tree build handler defining which tree is to be built."
+      },
+      {
+        "name": "build_handler",
+        "type": "std::string",
+        "default": "",
+        "has_default": true,
+        "description": "Fully qualified class name of the build handler that is supposed to take care of the request. If empty, use the current one."
+      },
+      {
+        "name": "node_manifest",
+        "type": "std::string",
+        "default": "",
+        "has_default": true,
+        "description": "YAML/JSON formatted string encoding the name and the registration options for the tree nodes supposed to be loaded before building the tree."
+      },
+      {
+        "name": "entry_point",
+        "type": "std::string",
+        "default": "",
+        "has_default": true,
+        "description": "Entry point for the behavior. If empty, let the build handler determine it automatically."
+      },
+      {
+        "name": "clear_blackboard",
+        "type": "bool",
+        "default": "true",
+        "has_default": true,
+        "description": "Boolean flag wether to clear the existing blackboard entries before the execution starts or not."
+      },
+      {
+        "name": "attach",
+        "type": "bool",
+        "default": "true",
+        "has_default": true,
+        "description": "Boolean flag wether to attach to the execution process or start in detached mode."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "TerminateExecutor",
+    "class_name": "auto_apms_behavior_tree::TerminateExecutor",
+    "description": "Terminates an executor by sending a terminate command",
+    "topic": "(input:executor)/cmd",
+    "package": "excom_behavior_codec",
+    "metadata_id": "goto",
+    "pid": "excom_behavior_codec::goto",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": 3,
+    "request_timeout": 2,
+    "allow_unreachable": false,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "executor",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the executor to command."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "AlwaysFailure",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "AlwaysSuccess",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "AsyncFallback",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "AsyncSequence",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Delay",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "delay_msec",
+        "type": "unsigned int",
+        "default": "",
+        "has_default": false,
+        "description": "Tick the child after a few milliseconds"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Fallback",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "ForceFailure",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "ForceSuccess",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "IfThenElse",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Inverter",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "KeepRunningUntilFailure",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "LoopBool",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "if_empty",
+        "type": "BT::NodeStatus",
+        "default": "SUCCESS",
+        "has_default": true,
+        "description": "Status to return if queue is empty: SUCCESS, FAILURE, SKIPPED"
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "bool",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "input_output_ports": [
+      {
+        "name": "queue",
+        "type": "std::shared_ptr<std::deque<bool, std::allocator<bool> > >",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "node_name": "LoopDouble",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "if_empty",
+        "type": "BT::NodeStatus",
+        "default": "SUCCESS",
+        "has_default": true,
+        "description": "Status to return if queue is empty: SUCCESS, FAILURE, SKIPPED"
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "double",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "input_output_ports": [
+      {
+        "name": "queue",
+        "type": "std::shared_ptr<std::deque<double, std::allocator<double> > >",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "node_name": "LoopInt",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "if_empty",
+        "type": "BT::NodeStatus",
+        "default": "SUCCESS",
+        "has_default": true,
+        "description": "Status to return if queue is empty: SUCCESS, FAILURE, SKIPPED"
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "int",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "input_output_ports": [
+      {
+        "name": "queue",
+        "type": "std::shared_ptr<std::deque<int, std::allocator<int> > >",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "node_name": "LoopString",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "if_empty",
+        "type": "BT::NodeStatus",
+        "default": "SUCCESS",
+        "has_default": true,
+        "description": "Status to return if queue is empty: SUCCESS, FAILURE, SKIPPED"
+      }
+    ],
+    "output_ports": [
+      {
+        "name": "value",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "input_output_ports": [
+      {
+        "name": "queue",
+        "type": "std::shared_ptr<std::deque<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ]
+  },
+  {
+    "node_name": "Parallel",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "failure_count",
+        "type": "int",
+        "default": "1",
+        "has_default": true,
+        "description": "number of children that need to fail to trigger a FAILURE"
+      },
+      {
+        "name": "success_count",
+        "type": "int",
+        "default": "-1",
+        "has_default": true,
+        "description": "number of children that need to succeed to trigger a SUCCESS"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "ParallelAll",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "max_failures",
+        "type": "int",
+        "default": "1",
+        "has_default": true,
+        "description": "If the number of children returning FAILURE exceeds this value, ParallelAll returns FAILURE"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Precondition",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "else",
+        "type": "BT::NodeStatus",
+        "default": "FAILURE",
+        "has_default": true,
+        "description": "Return status if condition is false"
+      },
+      {
+        "name": "if",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "ReactiveFallback",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "ReactiveSequence",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Repeat",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "num_cycles",
+        "type": "int",
+        "default": "",
+        "has_default": false,
+        "description": "Repeat a successful child up to N times. Use -1 to create an infinite loop."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "RetryUntilSuccessful",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "num_attempts",
+        "type": "int",
+        "default": "",
+        "has_default": false,
+        "description": "Execute again a failing child up to N times. Use -1 to create an infinite loop."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "RunOnce",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "then_skip",
+        "type": "bool",
+        "default": "true",
+        "has_default": true,
+        "description": "If true, skip after the first execution, otherwise return the same NodeStatus returned once by the child."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Script",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "code",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Piece of code that can be parsed"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "ScriptCondition",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONDITION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "code",
+        "type": "BT::AnyTypeAllowed",
+        "default": "",
+        "has_default": false,
+        "description": "Piece of code that can be parsed. Must return false or true"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Sequence",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SequenceWithMemory",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SetBlackboard",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "value",
+        "type": "BT::AnyTypeAllowed",
+        "default": "",
+        "has_default": false,
+        "description": "Value to be written into the output_key"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": [
+      {
+        "name": "output_key",
+        "type": "BT::AnyTypeAllowed",
+        "default": "",
+        "has_default": false,
+        "description": "Name of the blackboard entry where the value should be written"
+      }
+    ]
+  },
+  {
+    "node_name": "SkipUnlessUpdated",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "entry",
+        "type": "BT::Any",
+        "default": "",
+        "has_default": false,
+        "description": "Entry to check"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Sleep",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "msec",
+        "type": "unsigned int",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "SubTree",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.SUBTREE",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "_autoremap",
+        "type": "bool",
+        "default": "false",
+        "has_default": true,
+        "description": "If true, all the ports with the same name will be remapped"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Switch2",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "case_2",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_1",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "variable",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Switch3",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "case_3",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_2",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_1",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "variable",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Switch4",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "case_4",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_3",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_2",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_1",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "variable",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Switch5",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "case_5",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_4",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_3",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_2",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_1",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "variable",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Switch6",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "case_5",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_4",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_6",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_3",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_2",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "case_1",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      },
+      {
+        "name": "variable",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": ""
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "Timeout",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "msec",
+        "type": "unsigned int",
+        "default": "",
+        "has_default": false,
+        "description": "After a certain amount of time, halt() the child if it is still running."
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "UnsetBlackboard",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "key",
+        "type": "std::string",
+        "default": "",
+        "has_default": false,
+        "description": "Key of the entry to remove"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "WaitValueUpdate",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.DECORATOR",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "entry",
+        "type": "BT::Any",
+        "default": "",
+        "has_default": false,
+        "description": "Entry to check"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "WasEntryUpdated",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.ACTION",
+    "extra": null,
+    "input_ports": [
+      {
+        "name": "entry",
+        "type": "BT::Any",
+        "default": "",
+        "has_default": false,
+        "description": "Entry to check"
+      }
+    ],
+    "output_ports": [],
+    "input_output_ports": []
+  },
+  {
+    "node_name": "WhileDoElse",
+    "class_name": "",
+    "description": "",
+    "topic": "",
+    "package": "BehaviorTree.CPP",
+    "metadata_id": "",
+    "pid": "BehaviorTree.CPP",
+    "port_alias": {},
+    "port_default": {},
+    "hidden_ports": [],
+    "wait_timeout": null,
+    "request_timeout": null,
+    "allow_unreachable": null,
+    "logger_level": "",
+    "node_type": "NodeType.CONTROL",
+    "extra": null,
+    "input_ports": [],
+    "output_ports": [],
+    "input_output_ports": []
+  }
+]

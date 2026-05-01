@@ -1,0 +1,307 @@
+@import "tailwindcss" source("../src");
+
+* {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark;
+}
+
+@plugin "daisyui" {
+  exclude: properties;
+}
+
+body {
+  margin: 0;
+}
+
+@layer utilities {
+  .bg-background {
+    background-color: var(--background);
+  }
+  .bg-input-field {
+    background-color: var(--input-field);
+  }
+  .text-text {
+    color: var(--text-color);
+  }
+  .text-divider {
+    color: var(--divider);
+  }
+  .text-highlight {
+    color: var(--highlight);
+  }
+  .bg-divider {
+    background-color: var(--divider);
+  }
+  .border-divider {
+    border-color: var(--divider);
+  }
+  .bg-highlight {
+    background-color: var(--highlight);
+  }
+  .bg-workspace {
+    background-color: var(--workspace);
+  }
+  .hover\:bg-highlight:hover {
+    background-color: var(--highlight);
+  }
+  .border-highlight {
+    border-color: var(--highlight);
+  }
+  .hover\:border-highlight:hover {
+    border-color: var(--highlight);
+  }
+  .focus-within\:border-highlight:focus-within {
+    border-color: var(--highlight);
+  }
+  .text-status-connected {
+    color: var(--status-connected-text);
+  }
+  .border-status-connected {
+    border-color: var(--status-connected-border);
+  }
+  .bg-status-connected {
+    background-color: var(--status-connected-bg);
+  }
+  .bg-status-connected-dot {
+    background-color: var(--status-connected-text);
+  }
+  .text-status-disconnected {
+    color: var(--status-disconnected-text);
+  }
+  .border-status-disconnected {
+    border-color: var(--status-disconnected-border);
+  }
+  .bg-status-disconnected {
+    background-color: var(--status-disconnected-bg);
+  }
+  .bg-error {
+    background-color: var(--error-bg);
+  }
+  .text-error {
+    color: var(--error-text);
+  }
+}
+
+[data-theme="dark"] {
+  --text-color: white;
+  --background: #1b1b1f;
+  --input-field: #18181b;
+  --divider: #2e2e32;
+  --highlight: #5e5e60;
+  --workspace: #161618;
+
+  --status-connected-text: #34d399;
+  --status-connected-border: #10b981;
+  --status-connected-bg: #022c22;
+  --status-disconnected-text: #71717a;
+  --status-disconnected-border: #52525b;
+  --status-disconnected-bg: #18181b;
+
+  --error-bg: #ff627d;
+  --error-text: #18181b;
+
+  --syntax-tag: #5e5e60;
+  --syntax-name: #8c8c8d;
+  --syntax-attr: #7c9fd4;
+  --syntax-string: #6a9f6a;
+  --syntax-number: #c4845a;
+}
+
+[data-theme="light"] {
+  --text-color: black;
+  --background: #ffffff;
+  --input-field: #f5f5f5;
+  --divider: #e2e2e3;
+  --highlight: #d3d3d3;
+  --workspace: #f6f6f7;
+
+  --status-connected-text: #059669;
+  --status-connected-border: #047857;
+  --status-connected-bg: #d1fae5;
+  --status-disconnected-text: #9ca3af;
+  --status-disconnected-border: #d1d5db;
+  --status-disconnected-bg: #f3f4f6;
+
+  --error-bg: #ff627d;
+  --error-text: #18181b;
+
+  --syntax-tag: #888888;
+  --syntax-name: #2563eb;
+  --syntax-attr: #7c3aed;
+  --syntax-string: #16a34a;
+  --syntax-number: #ea580c;
+}
+
+[data-theme="nightfall"] {
+  --text-color: #a4abc4;
+  --background: #1c1e26;
+  --input-field: #252732;
+  --divider: #3f4054;
+  --highlight: #8594d0;
+  --workspace: #1c1e26;
+
+  --status-connected-text: #7dd3b0;
+  --status-connected-border: #4db896;
+  --status-connected-bg: #0f2a20;
+  --status-disconnected-text: #5a5f7a;
+  --status-disconnected-border: #3f4054;
+  --status-disconnected-bg: #1c1e26;
+
+  --error-bg: #c0394f;
+  --error-text: #f0d6d6;
+
+  --syntax-tag: #6272a4;
+  --syntax-name: #8be9fd;
+  --syntax-attr: #8594d0;
+  --syntax-string: #7dd3b0;
+  --syntax-number: #f5a97f;
+}
+
+[data-theme="inferno"] {
+  --text-color: #f0d6d6;
+  --background: #1a0f0f;
+  --input-field: #2a1b1b;
+  --divider: #4a2c2c;
+  --highlight: #ff4c4c;
+  --workspace: #1a0f0f;
+
+  --status-connected-text: #ff9a5c;
+  --status-connected-border: #ff6a2a;
+  --status-connected-bg: #2a1500;
+  --status-disconnected-text: #7a4040;
+  --status-disconnected-border: #4a2c2c;
+  --status-disconnected-bg: #1a0f0f;
+
+  --error-bg: #ff4c4c;
+  --error-text: #1a0f0f;
+
+  --syntax-tag: #4a2c2c;
+  --syntax-name: #ff9a5c;
+  --syntax-attr: #ff4c4c;
+  --syntax-string: #c4845a;
+  --syntax-number: #ff8c8c;
+}
+
+[data-theme="catppuccin-macchiato"] {
+  --text-color: #cad3f5;
+  --background: #24273a;
+  --input-field: #1e2030;
+  --divider: #363a4f;
+  --highlight: #8aadf4;
+  --workspace: #181926;
+
+  --status-connected-text: #a6da95;
+  --status-connected-border: #8bd5ca;
+  --status-connected-bg: #1e2030;
+  --status-disconnected-text: #6e738d;
+  --status-disconnected-border: #494d64;
+  --status-disconnected-bg: #1e2030;
+
+  --error-bg: #ed8796;
+  --error-text: #181926;
+
+  --syntax-tag: #6e738d;
+  --syntax-name: #8aadf4;
+  --syntax-attr: #c6a0f6;
+  --syntax-string: #a6da95;
+  --syntax-number: #f5a97f;
+}
+
+[data-theme="glamour"] {
+  --text-color: #ffffff;
+  --background: #2d1a2b;
+  --input-field: #3a1f3c;
+  --divider: #5e2d4d;
+  --highlight: #ff85b3;
+  --workspace: #2d1a2b;
+
+  --status-connected-text: #ff85b3;
+  --status-connected-border: #cc5580;
+  --status-connected-bg: #2a0f1f;
+  --status-disconnected-text: #7a4060;
+  --status-disconnected-border: #5e2d4d;
+  --status-disconnected-bg: #2d1a2b;
+
+  --error-bg: #ff627d;
+  --error-text: #2d1a2b;
+
+  --syntax-tag: #5e2d4d;
+  --syntax-name: #ff85b3;
+  --syntax-attr: #ffb0d6;
+  --syntax-string: #c084fc;
+  --syntax-number: #fca5a5;
+}
+
+.react-flow__controls-button {
+  background: var(--background) !important;
+  border-bottom: 1px solid var(--divider) !important;
+  color: var(--text-color) !important;
+  transition: background 0.2s ease !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--highlight) !important;
+}
+
+.react-flow__controls-button:first-child {
+  border-radius: 7px 7px 0 0 !important;
+}
+
+.react-flow__controls-button:last-child {
+  border-radius: 0 0 7px 7px !important;
+  border-bottom: none !important;
+}
+
+.behavior-tree-node .h-px {
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  width: calc(100% + 1rem);
+}
+
+.kbd {
+  background-color: var(--input-field);
+  border-color: var(--divider);
+}
+
+.react-flow__node.selected .behavior-tree-node {
+  border-color: var(--highlight) !important;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-border {
+  to {
+    --angle: 360deg;
+  }
+}
+
+.bg-info {
+  background-color: #05b8cf;
+}
+.border-info {
+  border-color: #05b8cf;
+}
+
+.animated-border {
+  border: 2px solid transparent;
+  background-image:
+    linear-gradient(var(--input-field), var(--input-field)),
+    conic-gradient(from var(--angle), #05b8cf, #f02a6c, #05b8cf);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  animation: spin-border 10s linear infinite;
+}

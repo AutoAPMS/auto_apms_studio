@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>auto_apms_studio</name>
+  <version>0.1.0</version>
+  <description>AutoAPMS Studio</description>
+
+  <maintainer email="autoapms-studio@proton.me">AutoAPMS Studio Team</maintainer>
+  <license>Apache-2.0</license>
+
+  <!-- Build system -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
+
+  <!-- Runtime dependencies -->
+  <exec_depend>launch</exec_depend>
+  <exec_depend>ros2run</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>auto_apms_behavior_tree</exec_depend>
+  <exec_depend>python3-fastapi</exec_depend>
+  <exec_depend>python3-uvicorn</exec_depend>
+  <exec_depend>python3-pydantic</exec_depend>
+  <exec_depend>python3-defusedxml</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
+

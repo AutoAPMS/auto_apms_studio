@@ -1,0 +1,28 @@
+# React-Frontend
+**/node_modules/
+**/dist/
+**/.vite/
+**/coverage/
+**/*.log
+
+# Python-Backend
+web/backend/.venv/
+web/backend/venv/
+web/backend/__pycache__/
+web/backend/*.pyc
+web/backend/build/
+web/backend/*.egg-info/
+
+# IDE / Global
+.env
+.env.*
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# precommit
+.mypy_cache
+
+# docs
+docs/.vitepress/cache

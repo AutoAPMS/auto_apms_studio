@@ -1,0 +1,114 @@
+include:
+  - remote: https://raw.githubusercontent.com/TUDA-FSR/docker-ros/refs/heads/main/.gitlab-ci/docker-ros.yml
+
+.npm-cache: &npm-cache
+  cache:
+    key:
+      files:
+        - web/package-lock.json
+      prefix: npm-shared
+    paths:
+      - web/node_modules
+      - web/.npm
+
+variables:
+  BASE_IMAGE: registry.git.rwth-aachen.de/orcas/util/auto_apms_vendor:jazzy
+  TARGET: run
+  COMMAND: ros2 launch auto_apms_studio studio_launch.py
+  IMAGE_TAG: jazzy
+
+format-check-frontend:
+  image: node:24
+  stage: .pre
+  <<: *npm-cache
+  before_script:
+    - cd web
+    - npm ci
+  script:
+    - npm run format:check
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+  allow_failure: false
+
+format-check-backend:
+  image: python:3.12
+  stage: .pre
+  cache:
+    key:
+      files:
+        - auto_apms_studio/backend/pyproject.toml
+      prefix: pip-format-backend
+    paths:
+      - .cache/pip
+  before_script:
+    - cd auto_apms_studio/backend
+    - pip install --cache-dir=.cache/pip ruff
+  script:
+    - ruff format --check .
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+  allow_failure: false
+
+backend-test:
+  image: python:3.12
+  stage: .pre
+  cache:
+    key:
+      files:
+        - auto_apms_studio/backend/pyproject.toml
+      prefix: pip-backend
+    paths:
+      - .cache/pip
+  before_script:
+    - cd auto_apms_studio/backend
+    - pip install --cache-dir=.cache/pip -e .
+    - export PYTHONPATH="${CI_PROJECT_DIR}:${PYTHONPATH}"
+  script:
+    - pytest tests/ -v
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+  allow_failure: false
+
+frontend-test:
+  image: node:24
+  stage: .pre
+  <<: *npm-cache
+  before_script:
+    - cd web
+    - npm ci --cache .npm --prefer-offline
+  script:
+    - npm run test:run
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH
+  allow_failure: false
+
+deploy-pages:
+  image: node:24
+  stage: .post
+  pages:
+    publish: public
+  cache:
+    key:
+      files:
+        - package-lock.json
+      prefix: npm
+    paths:
+      - web/node_modules/
+      - docs/
+  before_script: ""
+  script:
+    - (cd web && npm install && npm run build)
+    - npm install
+    - npm run docs:build
+    - mkdir -p public
+    - cp -a web/dist/. public/
+    - cp -a docs/.vitepress/dist/. public/docs/
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

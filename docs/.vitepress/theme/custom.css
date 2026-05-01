@@ -1,0 +1,60 @@
+:root {
+    --c-primary-brand: #05b8cf;
+    --c-secondary-brand: #f02a6c;
+
+    --vp-c-brand-1: #03b9da;
+    --vp-c-brand-2: #067ca0;
+    --vp-c-brand-3: #13bbd1;
+    --vp-c-brand-soft: rgb(5, 184, 207, 0.14);
+
+    --vp-home-hero-name-color: transparent;
+    --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--c-primary-brand), var(--c-secondary-brand));
+
+    --vp-home-hero-image-background-image: linear-gradient(120deg, var(--c-secondary-brand) 50%, var(--c-primary-brand) 50%);
+    --vp-home-hero-image-filter: blur(44px);
+}
+
+.dark {
+    --vp-c-brand-1: #2fcce0;
+    --vp-c-brand-2: #198ca0;
+    --vp-c-brand-3: #1ca5bd;
+    --vp-c-brand-soft: rgb(5, 184, 207, 0.16);
+}
+
+@media (min-width: 640px) {
+    :root {
+        --vp-home-hero-image-filter: blur(56px);
+    }
+}
+
+@media (min-width: 960px) {
+    :root {
+        --vp-home-hero-image-filter: blur(74px);
+    }
+}
+
+/* Remove soft background from icon in article component on home page */
+article>.icon {
+    background-color: transparent !important;
+}
+
+.VPDoc .aside {
+    max-width: 320px; /* Increase from default 256px */
+}
+
+.VPDoc .aside-container {
+    width: 288px; /* Increase from default 224px */
+}
+
+.VPDoc .aside-curtain {
+    width: 288px; /* Match aside-container width */
+}
+
+.vp-feature-icon {
+    color: var(--vp-c-brand-1) !important;
+}
+
+.vp-feature-icon svg {
+    width: 48px;
+    height: 48px;
+}
