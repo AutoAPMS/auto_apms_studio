@@ -5,7 +5,7 @@ AutoAPMS Studio is a powerful tool for creating and deploying Behavior Trees. Wo
 - Importing and Exporting existing Behavior Trees
 - Deploying Behavior Trees to your robot or drone
 
-If you just want to get started with Behavior Trees, see the [Quickstart Guide](quickstart.md). 
+If you just want to get started with Behavior Trees, see the [Quickstart Guide](../introduction/getting-started.md). 
 Read along if you want to learn more in-depth about the concepts behind AutoAPMS Studio.
 
 ## Importing & Exporting

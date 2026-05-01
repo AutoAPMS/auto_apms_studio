@@ -25,7 +25,7 @@ If AutoAPMS Studio shows a connection error or the Backend indicator stays red:
 ### "Network error: Failed to fetch node modules. Using local fallback data."
 
 - Confirm the Backend is running and reachable from your machine, check the API Endpoint manually: `http://localhost:8000/api/v1/node_modules`
-- If you are intentionally in **Offline Mode**, you can ignore this. For more information, see [Offline Mode](offline-mode.md).
+- If you are intentionally in **Offline Mode**, you can ignore this.
 - Try refreshing the page or restarting the AutoAPMS Studio Web App.
 
 ::: info Still stuck?

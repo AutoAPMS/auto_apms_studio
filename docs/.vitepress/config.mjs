@@ -47,9 +47,9 @@ export default withMermaid(defineConfig({
     },
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Live Demo', link: 'https://auto-apms-studio-d50829.pages.git-ce.rwth-aachen.de/' },
+      { text: 'Live Demo', link: 'https://autoapms.github.io/auto_apms_studio/' },
       { text: 'User Guide', link: '/user-guide/introduction/introduction' },
-      //{ text: 'API Docs', link: '/api-docs/introduction' } - TODO: List again once polished
+      { text: 'API Docs', link: '/dev-docs/introduction' }
     ],
 
     sidebar: {
@@ -77,35 +77,35 @@ export default withMermaid(defineConfig({
           ]
         }
       ],
-      '/api-docs/': [
+      '/dev-docs/': [
         {
           text: 'Overview',
           items: [
-            { text: 'Introduction', link: '/api-docs/introduction' },
-            { text: 'Architecture', link: '/api-docs/architecture' },
-            { text: 'Project Structure', link: '/api-docs/structure' },
+            { text: 'Introduction', link: '/dev-docs/introduction' },
+            { text: 'Architecture', link: '/dev-docs/architecture' },
+            { text: 'Project Structure', link: '/dev-docs/structure' },
           ]
         },
         {
           text: 'API Reference',
           items: [
-            { text: 'REST API', link: '/api-docs/api/rest' },
-            { text: 'WebSocket', link: '/api-docs/api/websocket' },
+            { text: 'REST API', link: '/dev-docs/api/rest' },
+            { text: 'WebSocket', link: '/dev-docs/api/websocket' },
           ]
         },
         {
           text: 'Guides',
           items: [
-            { text: 'Migrating from Groot2', link: '/api-docs/guides/groot2-migration' },
-            { text: 'Importing Node Models', link: '/api-docs/guides/importing-node-models' },
+            { text: 'Migrating from Groot2', link: '/dev-docs/guides/groot2-migration' },
+            { text: 'Importing Node Models', link: '/dev-docs/guides/importing-node-models' },
           ]
         },
         {
           text: 'Contributing',
           items: [
-            { text: 'Dev Setup', link: '/api-docs/contributing/dev-setup' },
-            { text: 'Guidelines', link: '/api-docs/contributing/guidelines' },
-            { text: 'How to Contribute', link: '/api-docs/contributing/contributing' },
+            { text: 'Dev Setup', link: '/dev-docs/contributing/dev-setup' },
+            { text: 'Guidelines', link: '/dev-docs/contributing/guidelines' },
+            { text: 'How to Contribute', link: '/dev-docs/contributing/contributing' },
           ]
         }
       ]

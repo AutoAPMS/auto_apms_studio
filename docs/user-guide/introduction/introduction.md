@@ -38,13 +38,12 @@ Choose the executor and node manifest that define how your Behavior Tree is inte
 Ready to dive deeper into **AutoAPMS Studio**? Check out the following pages:
 
 - [**Installation**](installation.md) Find out how to install AutoAPMS Studio
-- [**Getting Started**](../archive/getting-started.md) Get started with AutoAPMS Studio right away
-- [**API Documentation**](../api-docs/introduction) Learn the AutoAPMS Studio architecture and how to contribute
+- [**Getting Started**](../introduction/getting-started.md) Get started with AutoAPMS Studio right away
+- [**API Documentation**](../../dev-guide/introduction) Learn the AutoAPMS Studio architecture and how to contribute
 
 ## Acknowledgements
 
-AutoAPMS Studio was initially developed by students at [TU Darmstadt](https://www.tu-darmstadt.de/),
-Laura Fellinger, Ewald Hild, Mohamed Masmoudi, Daniel Sereda and Kevin Thiele, with support
+AutoAPMS Studio was initially developed by students at [TU Darmstadt](https://www.tu-darmstadt.de/), with support
 from Robin Müller, as a companion tool to the [AutoAPMS](https://autoapms.github.io/auto-apms-guide/) framework.
 
 It is inspired by [Groot2](https://www.behaviortree.dev/groot/), the official visual editor for
