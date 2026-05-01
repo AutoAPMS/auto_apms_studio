@@ -1,0 +1,30 @@
+[
+  {
+    "?xml": [
+      {
+        "#text": ""
+      }
+    ],
+    ":@": {
+      "@_version": "1.0",
+      "@_encoding": "UTF-8"
+    }
+  },
+  {
+    "root": [
+      {
+        "BehaviorTree": [
+          {
+            "AlwaysSuccess": []
+          }
+        ],
+        ":@": {
+          "@_ID": "Untitled"
+        }
+      }
+    ],
+    ":@": {
+      "@_BTCPP_format": "4"
+    }
+  }
+]
