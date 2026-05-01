@@ -19,7 +19,7 @@ const vitePressSidebarOptions = {
 }
 
 export default withMermaid(defineConfig({
-  base: '/docs/',
+  base: '/auto_apms_studio/docs/',
   title: "AutoAPMS Studio",
   description: "AutoAPMS BehaviorTree Builder",
   head: [
