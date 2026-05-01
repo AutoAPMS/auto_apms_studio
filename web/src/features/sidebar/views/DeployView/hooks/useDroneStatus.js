@@ -61,7 +61,8 @@ export function useDroneStatus() {
       onMessage: (data) => {
         if (data.type === "status") {
           setConnected(true);
-          const measured = data && typeof data.ping_ms === "number" ? data.ping_ms : null;
+          const measured =
+            data && typeof data.ping_ms === "number" ? data.ping_ms : null;
 
           if (measured != null) {
             if (!firstReceivedRef.current) {
