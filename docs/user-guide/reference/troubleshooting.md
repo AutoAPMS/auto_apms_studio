@@ -13,7 +13,7 @@ If AutoAPMS Studio shows a connection error or the Backend indicator stays red:
 - If you are connecting remotely, make sure the Backend is reachable from your machine (same network, VPN, etc.)
 - Check if a firewall is blocking the port
  
-### Backend starts but immediatelly stops
+### Backend starts but immediately stops
 
 - Make sure your ROS 2 environment is sourced correctly: `source install/setup.bash`
 - - Make sure all dependencies are installed via rosdep:
@@ -25,7 +25,7 @@ If AutoAPMS Studio shows a connection error or the Backend indicator stays red:
 ### "Network error: Failed to fetch node modules. Using local fallback data."
 
 - Confirm the Backend is running and reachable from your machine, check the API Endpoint manually: `http://localhost:8000/api/v1/node_modules`
-- If you are intentionally in **Offline Mode**, you can ignore this.
+- If you are intentionally in **Offline Mode**, you can ignore this. For more information, see [Offline Mode](offline-mode.md).
 - Try refreshing the page or restarting the AutoAPMS Studio Web App.
 
 ::: info Still stuck?

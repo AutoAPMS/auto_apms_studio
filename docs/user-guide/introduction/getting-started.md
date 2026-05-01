@@ -173,9 +173,9 @@ You have successfully created your first Behavior Tree! Congratulations! 🎉
 
 **Explore More:**
 
-- [**Core Concepts**](../concepts/core-concepts.md) - Learn the core concepts of AutoAPMS Studio and Behavior Trees
-- [**Workflows**](../concepts/workflows.md) - Explore different workflows and use cases for AutoAPMS Studio
+- [**Core Concepts**](../concepts/core-concepts.md) Learn the core concepts of AutoAPMS Studio and Behavior Trees
+- [**Workflows**](../concepts/workflows.md) Explore different workflows and use cases for AutoAPMS Studio
 
 **Need Help?**
 
-- [**Troubleshooting Guide**](../reference/troubleshooting.md) - Common issues and solutions for AutoAPMS Studio
+- [**Troubleshooting Guide**](../reference/troubleshooting.md) Common issues and solutions for AutoAPMS Studio

@@ -1,11 +1,11 @@
 # Workflows
 
-AutoAPMS Studio is a powerful tool for creating and deploying Behavior Trees. These include, but are not limited to:
+AutoAPMS Studio is a powerful tool for creating and deploying Behavior Trees. Workflows include but are not limited to:
 - Creating new Behavior Trees
 - Importing and Exporting existing Behavior Trees
 - Deploying Behavior Trees to your robot or drone
 
-If you just want to get started with Behavior Trees, see the [Quickstart Guide](../introduction/getting-started.md). 
+If you just want to get started with Behavior Trees, see the [Quickstart Guide](quickstart.md). 
 Read along if you want to learn more in-depth about the concepts behind AutoAPMS Studio.
 
 ## Importing & Exporting
@@ -82,7 +82,7 @@ sequenceDiagram
     participant E as Behavior Executor
     B->>S: Deploy (via WebSocket)
     S->>E: StartTreeExecutor Goal
-    E->>E: Load Node Plugins, Execute Behavior Tree
+    E->>E: Load Requirements, Execute Behavior Tree
     E-->>S: Send Feedback and Result
     S-->>B: Status Updates
 ```
@@ -135,9 +135,4 @@ ros2 run auto_apms_behavior_tree tree_executor
 You can connect to a remote Backend from any machine on the same network, not just locally. 
 This allows you to deploy directly from your development machine to your robot. For remote deployments,
 please ensure that the Backend is only accessible from trusted devices. (e.g., through a VPN or network tunnel)
-:::
-
-::: info Future Improvements
-Currently, the Behavior Executor is fixed to the standard `tree_executor` provided by AutoAPMS. 
-Selecting a custom executor directly from the frontend is planned and will be available in a future release.
 :::

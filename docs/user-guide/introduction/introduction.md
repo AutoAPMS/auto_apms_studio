@@ -37,9 +37,9 @@ Choose the executor and node manifest that define how your Behavior Tree is inte
 
 Ready to dive deeper into **AutoAPMS Studio**? Check out the following pages:
 
-- [**Installation**](installation.md) - Find out how to install AutoAPMS Studio
-- [**Getting Started**](../introduction/getting-started.md) - Get started with AutoAPMS Studio right away
-- [**API Documentation**](../../api-docs/introduction) - Learn the AutoAPMS Studio architecture and how to contribute
+- [**Installation**](installation.md) Find out how to install AutoAPMS Studio
+- [**Getting Started**](../archive/getting-started.md) Get started with AutoAPMS Studio right away
+- [**API Documentation**](../api-docs/introduction) Learn the AutoAPMS Studio architecture and how to contribute
 
 ## Acknowledgements
 
