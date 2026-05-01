@@ -73,7 +73,7 @@ function SidebarFooter() {
         <a
           target="_blank"
           rel="noopener noreferrer"
-          href="https://auto-apms-studio-d50829.pages.git-ce.rwth-aachen.de/docs/"
+          href="https://autoapms.github.io/auto_apms_studio/docs/"
           className="text-xs"
         >
           {" "}
