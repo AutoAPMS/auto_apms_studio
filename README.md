@@ -1,5 +1,5 @@
 <div align="center">
-<img src="public/autoapms_studio_header.png" alt="AutoAPMS Studio Logo" width="500" style="display: block; margin: 0 auto;">
+<img src="web/src/assets/autoapms_studio_header.svg" alt="AutoAPMS Studio Logo" width="500" style="display: block; margin: 0 auto;">
 
 <p></p>
 
@@ -28,7 +28,7 @@ Built specifically for the [**AutoAPMS framework**](https://autoapms.github.io/a
 
 Use our [Live Demo](https://autoapms.github.io/auto_apms_studio/) to try out AutoAPMS Studio without installing it. The demo includes a pre-loaded set of node models and example Behavior Trees to explore.
 
-Once you are ready to move on, check out the [Installation Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/installation.md) to install AutoAPMS Studio in your existing ROS 2 environment. Then, head to the [Getting Started Guide](../archive/getting-started.md) to create and export your first Behavior Tree or carry over your existing Behavior Trees.
+Once you are ready to move on, check out the [Installation Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/installation.html) to install AutoAPMS Studio in your existing ROS 2 environment. Then, head to the [Getting Started Guide](../archive/getting-started.html) to create and export your first Behavior Tree or carry over your existing Behavior Trees.
 
 --- 
 
@@ -43,13 +43,13 @@ You can use AutoAPMS Studio as a ROS 2 package in your existing ROS 2 environmen
 Or you can use the web editor standalone for "on the go" usage. The latest imported node models are stored on your machine and can be used offline. 
 Or, connect to the AutoAPMS Studio Backend remotely from any machine to access your node models.
 
-Learn more about the use cases and features of AutoAPMS Studio in the [Introduction Section](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/introduction.md) and the [Documentation](https://autoapms.github.io/auto_apms_studio/docs/).
+Learn more about the use cases and features of AutoAPMS Studio in the [Introduction Section](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/introduction.html) and the [Documentation](https://autoapms.github.io/auto_apms_studio/docs/).
 
 ---
 
 ## 🏗️ Contribute to AutoAPMS Studio
 
-We welcome contributions from enthusiasts from all around the world. Please read our [Contributing Guidelines](https://autoapms.github.io/auto_apms_studio/docs/dev-guide/contributing/contributing.md) to learn how you can contribute to the project, whether it's through code, documentation, or other means. Any help is appreciated and helps the robotics community grow!
+We welcome contributions from enthusiasts from all around the world. Please read our [Contributing Guidelines](https://autoapms.github.io/auto_apms_studio/docs/dev-guide/contributing/contributing.html) to learn how you can contribute to the project, whether it's through code, documentation, or other means. Any help is appreciated and helps the robotics community grow!
 
 --- 
 
@@ -59,8 +59,8 @@ We welcome contributions from enthusiasts from all around the world. Please read
 Find out more about this project by following the links below and give the demo a try!:
 
 - [Full Documentation](https://autoapms.github.io/auto_apms_studio/docs/)
-- [Getting Started Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/getting-started.md)
-- [API Documentation](https://autoapms.github.io/auto_apms_studio/docs/dev-guide/introduction.md)
+- [Getting Started Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/getting-started.html)
+- [API Documentation](https://autoapms.github.io/auto_apms_studio/docs/dev-guide/introduction.html)
 - [Live Demo](https://autoapms.github.io/auto_apms_studio/) — Try it without installing!
 
 And of course, check out the core technologies that make AutoAPMS Studio possible:
