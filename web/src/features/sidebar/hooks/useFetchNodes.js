@@ -32,7 +32,7 @@ export function useFetchNodes() {
 
     async function fetchNodes() {
       try {
-        const res = await fetch(`${backendHost}/api/v1/node_modules`, {
+        const res = await fetch(`${backendHost}/api/v1/node_modules/`, {
           signal: controller.signal,
         });
         if (!isMounted) return;

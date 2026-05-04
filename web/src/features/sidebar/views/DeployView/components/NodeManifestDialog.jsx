@@ -22,8 +22,8 @@ export function useNodeManifestDialog(treeId) {
     setLoading(true);
     try {
       const [manifestsRes, executorsRes] = await Promise.all([
-        fetch(`${backendHost}/api/v1/manifests`),
-        fetch(`${backendHost}/api/v1/executors`),
+        fetch(`${backendHost}/api/v1/manifests/`),
+        fetch(`${backendHost}/api/v1/executors/`),
       ]);
       if (manifestsRes.ok) {
         const data = await manifestsRes.json();
