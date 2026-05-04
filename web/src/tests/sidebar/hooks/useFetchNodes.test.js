@@ -28,7 +28,7 @@ describe("useFetchNodes", () => {
     });
 
     expect(fetch).toHaveBeenCalledWith(
-      "http://localhost:3000/api/v1/node_modules",
+      "http://localhost:3000/api/v1/node_modules/",
       expect.objectContaining({ signal: expect.any(AbortSignal) })
     );
     expect(result.current.error).toBeNull();
@@ -71,7 +71,7 @@ describe("useFetchNodes", () => {
     expect(fetch).toHaveBeenCalledTimes(2);
     expect(fetch).toHaveBeenNthCalledWith(
       1,
-      "http://localhost:3000/api/v1/node_modules",
+      "http://localhost:3000/api/v1/node_modules/",
       expect.objectContaining({ signal: expect.any(AbortSignal) })
     );
     expect(fetch).toHaveBeenNthCalledWith(2, "/node_models.json");
