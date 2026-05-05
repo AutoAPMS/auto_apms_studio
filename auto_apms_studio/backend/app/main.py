@@ -27,10 +27,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(nodes.router, prefix="/api/v1/node_modules")
 app.include_router(health.router, prefix="/health")
-app.include_router(mission.router, prefix="/v1/mission")
-app.include_router(upload.router, prefix="/api/v1/upload")
-app.include_router(status.router, prefix="/v1/status")
-app.include_router(manifests.router, prefix="/api/v1/manifests")
-app.include_router(executors.router, prefix="/api/v1/executors")
+app.include_router(status.router, prefix="/ws/v1")
+app.include_router(mission.router, prefix="/ws/v1")
+app.include_router(nodes.router, prefix="/api/v1")
+app.include_router(upload.router, prefix="/api/v1")
+app.include_router(manifests.router, prefix="/api/v1")
+app.include_router(executors.router, prefix="/api/v1")

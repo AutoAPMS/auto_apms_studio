@@ -6,7 +6,7 @@ router = APIRouter()
 MAX_PAYLOAD_SIZE = 1024 * 1024 * 1
 
 
-@router.post("/xml")
+@router.post("/upload/xml")
 async def upload_xml(file: UploadFile = File(...)):
     if not file.filename.endswith(".xml"):
         raise HTTPException(

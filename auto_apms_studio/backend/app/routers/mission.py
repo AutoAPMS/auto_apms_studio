@@ -9,7 +9,7 @@ from ..adapters.ros_bridge import await_rclpy_future
 router = APIRouter()
 
 
-@router.websocket("/ws/mission")
+@router.websocket("/mission")
 async def mission_websocket(websocket: WebSocket):
     """
     WebSocket Backend Endpoint for single mission.

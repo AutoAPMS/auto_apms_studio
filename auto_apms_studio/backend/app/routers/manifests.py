@@ -14,7 +14,7 @@ class ManifestIdentityList(BaseModel):
     manifests: list[ManifestIdentity]
 
 
-@router.get("/", tags=["manifests"], response_model=ManifestIdentityList)
+@router.get("/manifests/", tags=["manifests"], response_model=ManifestIdentityList)
 async def root() -> ManifestIdentityList:
     try:
         from auto_apms_behavior_tree_core.resources import (

@@ -6,7 +6,7 @@ from ..adapters.ros_node import get_node
 router = APIRouter()
 
 
-@router.websocket("/ws")
+@router.websocket("/status")
 async def status_websocket(websocket: WebSocket):
     await websocket.accept()
     ros_node = get_node()

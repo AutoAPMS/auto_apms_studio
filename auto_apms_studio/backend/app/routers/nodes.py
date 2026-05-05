@@ -7,7 +7,7 @@ from auto_apms_studio.backend.app.adapters.cpp_nodes import NativeTreeLoader
 router = APIRouter()
 
 
-@router.get("/", tags=["nodes"], response_model=NodeModelList)
+@router.get("/node_modules/", tags=["nodes"], response_model=NodeModelList)
 async def root() -> Any:
     nodes = AutoAPMSLoader.get_all_nodes() + NativeTreeLoader.get_all_nodes()
     if not nodes:
