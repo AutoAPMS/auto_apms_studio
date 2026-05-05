@@ -30,7 +30,27 @@ Use our [Live Demo](https://autoapms.github.io/auto_apms_studio/) to try out Aut
 
 Once you are ready to move on, check out the [Installation Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/installation.html) to install AutoAPMS Studio in your existing ROS 2 environment. Then, head to the [Getting Started Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/getting-started.html) to create and export your first Behavior Tree or carry over your existing Behavior Trees.
 
---- 
+---
+
+## 🐳 Docker
+
+The frontend is available as a pre-built Docker image on the GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/autoapms/auto_apms_studio_web:latest
+```
+
+Run the container and expose it on port 8080 (or any port you prefer):
+
+```bash
+docker run --rm -p 8080:80 ghcr.io/autoapms/auto_apms_studio_web:latest
+```
+
+Then open your browser and navigate to [http://localhost:8080/auto_apms_studio/](http://localhost:8080/auto_apms_studio/).
+
+> **Note:** The Docker image serves the standalone frontend only. You still need to run the backend from your existing ROS 2 workspace (see [Installation Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/installation.html)).
+
+---
 
 ## 🧗 Built for Robotics, Built for You
 
