@@ -13,9 +13,9 @@ describe("buildWorkspaceUrl", () => {
   });
 
   it("should handle custom ip and port", () => {
-    expect(
-      buildWorkspaceUrl("192.168.1.1", "9090", "/ws/v1/mission")
-    ).toBe("ws://192.168.1.1:9090/ws/v1/mission");
+    expect(buildWorkspaceUrl("192.168.1.1", "9090", "/ws/v1/mission")).toBe(
+      "ws://192.168.1.1:9090/ws/v1/mission"
+    );
   });
 });
 
