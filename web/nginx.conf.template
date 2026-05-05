@@ -1,0 +1,31 @@
+server {
+    listen 80;
+    server_name _;
+    root /usr/share/nginx/html;
+
+    location /auto_apms_studio/ {
+        try_files $uri $uri/ /auto_apms_studio/index.html;
+    }
+
+    location = / {
+        return 301 /auto_apms_studio/;
+    }
+
+    location /api/ {
+        proxy_pass http://host.docker.internal:${AUTO_APMS_STUDIO_BACKEND_PORT};
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    location /health {
+        proxy_pass http://host.docker.internal:${AUTO_APMS_STUDIO_BACKEND_PORT};
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    location /v1/ {
+        proxy_pass http://host.docker.internal:${AUTO_APMS_STUDIO_BACKEND_PORT};
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
