@@ -17,8 +17,8 @@ For the best experience, users should run the backend and frontend together. Dev
 1. When the frontend loads, it requests available node models from the backend via `GET /api/v1/node_modules/`.
 2. The backend then gathers node models from AutoAPMS (manifests) and native BehaviorTree.CPP registry, then returns them to the frontend as a JSON.
 3. Frontend imports these, renders them, and in case of a failure, displays an error message and falls back to built-in defaults.
-4. For mission execution, frontend opens a WebSocket to `/v1/mission/ws/mission`. The backend then forwards the request and handles the WebSocket connection.
-5. Status updates (executor availability, ping) are provided by `/v1/status/ws` at regular intervals.
+4. For mission execution, frontend opens a WebSocket to `/ws/v1/mission`. The backend then forwards the request and handles the WebSocket connection.
+5. Status updates (executor availability, ping) are provided by `/ws/v1/status` at regular intervals.
 
 ## Usage options
 

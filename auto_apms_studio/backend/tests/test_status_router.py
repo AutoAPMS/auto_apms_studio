@@ -14,7 +14,7 @@ class TestStatusRouter:
         mock_get_node.return_value = mock_node
 
         client = TestClient(app)
-        with client.websocket_connect("/v1/status/ws") as ws:
+        with client.websocket_connect("/ws/v1/status") as ws:
             msg = ws.receive_json()
             assert msg["type"] == "status"
             assert msg["drone_connected"] is True
@@ -29,7 +29,7 @@ class TestStatusRouter:
         mock_get_node.return_value = mock_node
 
         client = TestClient(app)
-        with client.websocket_connect("/v1/status/ws") as ws:
+        with client.websocket_connect("/ws/v1/status") as ws:
             msg = ws.receive_json()
             assert msg["type"] == "status"
             assert msg["drone_connected"] is True
