@@ -9,8 +9,8 @@ const { mockCreateWebSocket } = vi.hoisted(() => ({
 vi.mock(
   "../../../features/sidebar/views/DeployView/services/droneWebSocket.js",
   () => ({
-    buildWorkspaceUrl: vi.fn(() => "ws://127.0.0.1:8000/v1/mission/ws/mission"),
-    WS_PATHS: { STATUS: "/v1/status/ws", MISSION: "/v1/mission/ws/mission" },
+    buildWorkspaceUrl: vi.fn(() => "ws://127.0.0.1:8000/ws/v1/mission"),
+    WS_PATHS: { STATUS: "/ws/v1/status", MISSION: "/ws/v1/mission" },
     createWebSocket: mockCreateWebSocket,
   })
 );

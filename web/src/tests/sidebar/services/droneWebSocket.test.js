@@ -7,25 +7,25 @@ import {
 
 describe("buildWorkspaceUrl", () => {
   it("should build correct WebSocket URL", () => {
-    expect(buildWorkspaceUrl("127.0.0.1", "8000", "/v1/status/ws")).toBe(
-      "ws://127.0.0.1:8000/v1/status/ws"
+    expect(buildWorkspaceUrl("127.0.0.1", "8000", "/ws/v1/status")).toBe(
+      "ws://127.0.0.1:8000/ws/v1/status"
     );
   });
 
   it("should handle custom ip and port", () => {
-    expect(
-      buildWorkspaceUrl("192.168.1.1", "9090", "/v1/mission/ws/mission")
-    ).toBe("ws://192.168.1.1:9090/v1/mission/ws/mission");
+    expect(buildWorkspaceUrl("192.168.1.1", "9090", "/ws/v1/mission")).toBe(
+      "ws://192.168.1.1:9090/ws/v1/mission"
+    );
   });
 });
 
 describe("WS_PATHS", () => {
   it("should have correct STATUS path", () => {
-    expect(WS_PATHS.STATUS).toBe("/v1/status/ws");
+    expect(WS_PATHS.STATUS).toBe("/ws/v1/status");
   });
 
   it("should have correct MISSION path", () => {
-    expect(WS_PATHS.MISSION).toBe("/v1/mission/ws/mission");
+    expect(WS_PATHS.MISSION).toBe("/ws/v1/mission");
   });
 });
 

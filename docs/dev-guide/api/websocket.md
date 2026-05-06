@@ -2,7 +2,7 @@
 
 The backend provides two WebSocket endpoints used for live status and mission execution. These are primarily consumed by the frontend but can be used by other tools.
 
-## Status WebSocket — `/v1/status/ws`
+## Status WebSocket — `/ws/v1/status`
 
 - **Purpose**: periodic status updates (executor availability, ping).
 - **Behavior**: upon connection the backend sends JSON messages at periodic intervals.
@@ -18,7 +18,7 @@ Example message:
 }
 ```
 
-## Mission WebSocket — `/v1/mission/ws/mission`
+## Mission WebSocket — `/ws/v1/mission`
 
 - **Purpose**: start and monitor a single Behavior Tree mission. One connection represents one mission run.
 
