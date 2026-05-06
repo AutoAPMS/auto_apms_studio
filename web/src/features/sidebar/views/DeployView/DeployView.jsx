@@ -26,7 +26,7 @@ export default function DeployView() {
     disconnect,
   } = useDroneStatus();
   const [deployError, setDeployError] = useState(null);
-  const { missionStatus, missionError, isRunning, deploy, cancel } = useMission(
+  const { missionStatus, missionError, isRunning, isCancelling, deploy, cancel } = useMission(
     ip,
     port
   );
@@ -173,9 +173,10 @@ export default function DeployView() {
         </div>
         <button
           onClick={cancel}
-          className="flex-1 py-2 text-xs font-bold tracking-widest bg-input-field hover:bg-highlight text-text rounded cursor-pointer transition-colors border border-divider"
+          disabled={!isRunning || isCancelling}
+          className="flex-1 py-2 text-xs font-bold tracking-widest bg-input-field hover:bg-highlight text-text rounded cursor-pointer transition-colors border border-divider disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          CANCEL
+          {isCancelling ? "CANCELLING" : "CANCEL"}
         </button>
       </div>
     </div>

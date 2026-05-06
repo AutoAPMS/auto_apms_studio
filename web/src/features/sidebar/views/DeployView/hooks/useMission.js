@@ -10,26 +10,27 @@ import {
  *
  * @param ip
  * @param port
- * @returns {{missionStatus: unknown, missionError: unknown, isRunning: boolean, deploy: (function(*): void)|*, cancel: (function(): void)|*}}
+ * @returns {{missionStatus: unknown, missionError: unknown, isRunning: boolean, isCancelling: boolean, deploy: (function(*): void)|*, cancel: (function(): void)|*}}
  */
 export function useMission(ip, port) {
   const [missionStatus, setMissionStatus] = useState(null);
   const [missionError, setMissionError] = useState(null);
   const [isRunning, setIsRunning] = useState(false);
+  const [isCancelling, setIsCancelling] = useState(false);
 
   const wsRef = useRef(null);
   const isRunningRef = useRef(false);
+  const isCancellingRef = useRef(false);
+  const cancelTimeoutRef = useRef(null);
 
-  /**
-   * Deploys a mission by sending the provided XML to the backend via WebSocket.
-   * The websocket uses a Tree Executor to process the mission.
-   *
-   * @type {(function(*): void)|*}
-   */
   const deploy = useCallback(
     (xml) => {
       setMissionError(null);
       setMissionStatus(null);
+      isCancellingRef.current = false;
+      setIsCancelling(false);
+      clearTimeout(cancelTimeoutRef.current);
+      cancelTimeoutRef.current = null;
 
       const oldWs = wsRef.current;
       wsRef.current = null;
@@ -60,10 +61,16 @@ export function useMission(ip, port) {
               break;
 
             case "result":
+              clearTimeout(cancelTimeoutRef.current);
+              cancelTimeoutRef.current = null;
               isRunningRef.current = false;
+              isCancellingRef.current = false;
               setIsRunning(false);
+              setIsCancelling(false);
               if (data.tree_result === "SUCCESS") {
                 setMissionStatus(`Mission succeeded: ${data.message}`);
+              } else if (data.tree_result === "CANCELLED") {
+                setMissionStatus("Mission cancelled.");
               } else {
                 setMissionError(
                   `Mission failed (${data.tree_result}): ${data.message}`
@@ -73,8 +80,12 @@ export function useMission(ip, port) {
               break;
 
             case "error":
+              clearTimeout(cancelTimeoutRef.current);
+              cancelTimeoutRef.current = null;
               isRunningRef.current = false;
+              isCancellingRef.current = false;
               setIsRunning(false);
+              setIsCancelling(false);
               setMissionError(`Mission error: ${data.message}`);
               setMissionStatus(null);
               break;
@@ -86,18 +97,30 @@ export function useMission(ip, port) {
 
         onClose: () => {
           if (wsRef.current !== ws) return;
-          if (isRunningRef.current) {
+          wsRef.current = null;
+          clearTimeout(cancelTimeoutRef.current);
+          cancelTimeoutRef.current = null;
+          const wasRunning = isRunningRef.current;
+          const wasCancelling = isCancellingRef.current;
+          isRunningRef.current = false;
+          isCancellingRef.current = false;
+          setIsRunning(false);
+          setIsCancelling(false);
+          // Show an unexpected-disconnect error only when still running and
+          // the user did not initiate a cancel (a clean cancel receives a
+          // result message first, which already resets isRunning).
+          if (wasRunning && !wasCancelling) {
             setMissionError("Error - Mission connection closed unexpectedly");
             setMissionStatus(null);
           }
-          isRunningRef.current = false;
-          setIsRunning(false);
         },
 
         onError: () => {
           if (wsRef.current !== ws) return;
           isRunningRef.current = false;
+          isCancellingRef.current = false;
           setIsRunning(false);
+          setIsCancelling(false);
           setMissionError("Error - Failed to connect to mission endpoint");
           setMissionStatus(null);
         },
@@ -108,18 +131,44 @@ export function useMission(ip, port) {
     [ip, port]
   );
 
-  /* Cancels the current mission deployment. */
+  /**
+   * Sends a cancel request to the backend, which will cancel the active
+   * ROS 2 action goal.  The WebSocket stays open until the server confirms
+   * cancellation via a result message and closes the connection itself.
+   */
   const cancel = useCallback(() => {
-    wsRef.current?.close();
-    wsRef.current = null;
-    isRunningRef.current = false;
-    setIsRunning(false);
-    setMissionStatus(null);
-    setMissionError(null);
+    if (!wsRef.current || !isRunningRef.current) return;
+    isCancellingRef.current = true;
+    setIsCancelling(true);
+    try {
+      wsRef.current.send(JSON.stringify({ type: "cancel" }));
+    } catch {
+      // If the send fails the connection is already gone – clean up locally
+      wsRef.current = null;
+      isRunningRef.current = false;
+      isCancellingRef.current = false;
+      setIsRunning(false);
+      setIsCancelling(false);
+      return;
+    }
+    // If the backend doesn't confirm the cancel within 10 s, close forcefully
+    cancelTimeoutRef.current = setTimeout(() => {
+      if (!isCancellingRef.current) return;
+      const ws = wsRef.current;
+      wsRef.current = null;
+      isRunningRef.current = false;
+      isCancellingRef.current = false;
+      setIsRunning(false);
+      setIsCancelling(false);
+      setMissionError("Cancel timed out – no response from backend.");
+      setMissionStatus(null);
+      ws?.close();
+    }, 10_000);
   }, []);
 
   useEffect(() => {
     return () => {
+      clearTimeout(cancelTimeoutRef.current);
       wsRef.current?.close();
     };
   }, []);
@@ -128,6 +177,7 @@ export function useMission(ip, port) {
     missionStatus,
     missionError,
     isRunning,
+    isCancelling,
     deploy,
     cancel,
   };

@@ -1,10 +1,27 @@
 #!/usr/bin/env python3
 
 import argparse
+import http.server
 import os
 import sys
 
 from ament_index_python.packages import get_package_share_directory
+
+BASE_PATH = "/auto_apms_studio"
+
+
+class _Handler(http.server.SimpleHTTPRequestHandler):
+    """Serve files from *frontend_dist_dir* under the ``/auto_apms_studio/`` prefix."""
+
+    def translate_path(self, path):
+        # Strip the Vite base prefix so that /auto_apms_studio/assets/… resolves
+        # to <dist>/assets/… instead of <dist>/auto_apms_studio/assets/…
+        if path == BASE_PATH or path.startswith(BASE_PATH + "/"):
+            path = path[len(BASE_PATH) :] or "/"
+        return super().translate_path(path)
+
+    def log_message(self, fmt, *args):  # noqa: D401
+        print(f"{self.address_string()} - {fmt % args}", file=sys.stderr)
 
 
 if __name__ == "__main__":
@@ -31,17 +48,17 @@ if __name__ == "__main__":
         )
         sys.exit(1)
 
-    print("Starting AutoAPMS Studio web server:")
-    os.execvp(
-        sys.executable,
-        [
-            sys.executable,
-            "-m",
-            "http.server",
-            str(args.port),
-            "--bind",
-            args.host,
-            "--directory",
-            frontend_dist_dir,
-        ],
-    )
+    # Change to the dist directory so SimpleHTTPRequestHandler resolves paths correctly
+    os.chdir(frontend_dist_dir)
+
+    handler = _Handler
+    handler.directory = frontend_dist_dir
+
+    print(f"Starting AutoAPMS Studio web server:")
+    print(f"Serving at http://{args.host}:{args.port}{BASE_PATH}/")
+
+    with http.server.HTTPServer((args.host, args.port), handler) as httpd:
+        try:
+            httpd.serve_forever()
+        except KeyboardInterrupt:
+            pass
