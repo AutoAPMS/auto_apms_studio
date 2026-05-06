@@ -26,10 +26,14 @@ export default function DeployView() {
     disconnect,
   } = useDroneStatus();
   const [deployError, setDeployError] = useState(null);
-  const { missionStatus, missionError, isRunning, isCancelling, deploy, cancel } = useMission(
-    ip,
-    port
-  );
+  const {
+    missionStatus,
+    missionError,
+    isRunning,
+    isCancelling,
+    deploy,
+    cancel,
+  } = useMission(ip, port);
   const savedJson = useStore((state) => state.savedJson);
   const selectedTree = useStore((state) => state.selectedTree);
   const selectedTreeId = useStore((state) => state.selectedTreeId);

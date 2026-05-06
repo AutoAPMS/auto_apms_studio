@@ -134,9 +134,26 @@ describe("useMission", () => {
     const { result } = renderHook(() => useMission("127.0.0.1", "8000"));
     act(() => result.current.deploy("<root/>"));
     act(() => capturedHandlers.onOpen());
+
+    // Cancelling: sends the cancel message and enters the cancelling state
     act(() => result.current.cancel());
+    expect(mockWs.send).toHaveBeenLastCalledWith(
+      JSON.stringify({ type: "cancel" })
+    );
+    expect(result.current.isRunning).toBe(true);
+    expect(result.current.isCancelling).toBe(true);
+
+    // Backend confirms cancellation via a CANCELLED result message
+    act(() =>
+      capturedHandlers.onMessage({
+        type: "result",
+        tree_result: "CANCELLED",
+        message: "Mission cancelled by user.",
+      })
+    );
     expect(result.current.isRunning).toBe(false);
-    expect(result.current.missionStatus).toBeNull();
+    expect(result.current.isCancelling).toBe(false);
+    expect(result.current.missionStatus).toBe("Mission cancelled.");
     expect(result.current.missionError).toBeNull();
   });
 
