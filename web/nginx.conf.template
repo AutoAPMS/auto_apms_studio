@@ -8,7 +8,7 @@ server {
     }
 
     location = / {
-        return 301 /auto_apms_studio/;
+        return 301 $scheme://$http_host/auto_apms_studio/;
     }
 
     location /api/v1/ {
