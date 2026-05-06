@@ -22,6 +22,7 @@ export const NodeProvider = ({ children }) => {
     nodes,
     error: fetchError,
     clearError: clearFetchError,
+    status,
   } = useFetchNodes();
   const [manualError, setManualError] = useState(null);
   const nodeData = nodes;
@@ -45,6 +46,7 @@ export const NodeProvider = ({ children }) => {
         error,
         clearError,
         setError: setManualError,
+        status,
       }}
     >
       {children}
