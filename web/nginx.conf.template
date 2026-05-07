@@ -12,19 +12,19 @@ server {
     }
 
     location /api/v1/ {
-        proxy_pass http://host.docker.internal:${AUTO_APMS_STUDIO_BACKEND_PORT};
+        proxy_pass http://${AUTO_APMS_STUDIO_BACKEND_HOST}:${AUTO_APMS_STUDIO_BACKEND_PORT};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
 
     location /health {
-        proxy_pass http://host.docker.internal:${AUTO_APMS_STUDIO_BACKEND_PORT};
+        proxy_pass http://${AUTO_APMS_STUDIO_BACKEND_HOST}:${AUTO_APMS_STUDIO_BACKEND_PORT};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
 
     location /ws/v1/ {
-        proxy_pass http://host.docker.internal:${AUTO_APMS_STUDIO_BACKEND_PORT};
+        proxy_pass http://${AUTO_APMS_STUDIO_BACKEND_HOST}:${AUTO_APMS_STUDIO_BACKEND_PORT};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
