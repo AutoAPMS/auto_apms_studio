@@ -23,6 +23,7 @@ Thumbs.db
 
 # precommit
 .mypy_cache
+.ruff_cache
 
 # docs
 docs/.vitepress/cache

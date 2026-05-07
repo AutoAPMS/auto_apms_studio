@@ -29,10 +29,16 @@ if __name__ == "__main__":
         description="Start the Auto APMS Studio web server"
     )
     parser.add_argument(
-        "--host", default="0.0.0.0", help="Host to bind to (default: 0.0.0.0)"
+        "--host",
+        type=str,
+        default=os.getenv("AUTO_APMS_STUDIO_WEB_HOST", "0.0.0.0"),
+        help="Host to bind to (default: Environment variable AUTO_APMS_STUDIO_WEB_HOST, fall back to 0.0.0.0)",
     )
     parser.add_argument(
-        "--port", type=int, default=5173, help="Port to bind to (default: 5173)"
+        "--port",
+        type=int,
+        default=os.getenv("AUTO_APMS_STUDIO_WEB_PORT", "5173"),
+        help="Port to bind to (default: Environment variable AUTO_APMS_STUDIO_WEB_PORT, fall back to 5173)",
     )
     args = parser.parse_args()
 
@@ -54,7 +60,7 @@ if __name__ == "__main__":
     handler = _Handler
     handler.directory = frontend_dist_dir
 
-    print(f"Starting AutoAPMS Studio web server:")
+    print("Starting AutoAPMS Studio web server:")
     print(f"Serving at http://{args.host}:{args.port}{BASE_PATH}/")
 
     with http.server.HTTPServer((args.host, args.port), handler) as httpd:
