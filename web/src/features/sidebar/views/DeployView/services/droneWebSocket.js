@@ -15,8 +15,8 @@ export function buildWorkspaceUrl(ip, port, path) {
 }
 
 export const WS_PATHS = {
-  STATUS: "/v1/status/ws",
-  MISSION: "/v1/mission/ws/mission",
+  STATUS: "/ws/v1/status",
+  MISSION: "/ws/v1/mission/mission",
 };
 
 /**
