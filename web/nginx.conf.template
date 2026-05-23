@@ -23,8 +23,20 @@ server {
         proxy_set_header X-Real-IP $remote_addr;
     }
 
+    location /v1/ {
+        proxy_pass http://${AUTO_APMS_STUDIO_BACKEND_HOST}:${AUTO_APMS_STUDIO_BACKEND_PORT};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
     location /ws/v1/ {
         proxy_pass http://${AUTO_APMS_STUDIO_BACKEND_HOST}:${AUTO_APMS_STUDIO_BACKEND_PORT};
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
