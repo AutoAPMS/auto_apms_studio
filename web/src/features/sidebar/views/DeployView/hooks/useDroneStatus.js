@@ -23,6 +23,7 @@ export function useDroneStatus() {
   const pingTimeoutRef = useRef(null);
   const pingEmaRef = useRef(null);
   const firstReceivedRef = useRef(false);
+  const [connecting, setConnecting] = useState(false);
 
   /**
    * If ping is not received within 3 seconds, the connection is considered lost.
@@ -49,6 +50,7 @@ export function useDroneStatus() {
    */
   const connect = useCallback(() => {
     setError(null);
+    setConnecting(true);
     wsRef.current?.close();
 
     const url = buildWorkspaceUrl(ip, port, WS_PATHS.STATUS);
@@ -60,6 +62,7 @@ export function useDroneStatus() {
 
       onMessage: (data) => {
         if (data.type === "status") {
+          setConnecting(false);
           setConnected(true);
           const measured =
             data && typeof data.ping_ms === "number" ? data.ping_ms : null;
@@ -111,6 +114,7 @@ export function useDroneStatus() {
     wsRef.current?.close();
     wsRef.current = null;
 
+    setConnecting(false);
     setConnected(false);
     setPing(null);
     setError(null);
@@ -127,6 +131,7 @@ export function useDroneStatus() {
 
   return {
     connected,
+    connecting,
     ping,
     error,
     ip,

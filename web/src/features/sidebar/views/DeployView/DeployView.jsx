@@ -15,6 +15,7 @@ import { useState } from "react";
 export default function DeployView() {
   const {
     connected,
+    connecting,
     ping,
     executorAvailable,
     error: connectionError,
@@ -108,13 +109,14 @@ export default function DeployView() {
           port={port}
           onIpChange={setIp}
           onPortChange={setPort}
-          disabled={connected}
+          disabled={connected || connecting}
         />
       </div>
 
       <div className="flex-none p-2">
         <button
           onClick={connected ? disconnect : connect}
+          disabled={connecting}
           // TODO: Extract Red color from Error Message Component and here and add it to the theme
           className={`w-full py-1.5 text-xs font-bold tracking-wider bg-divider rounded transition-colors cursor-pointer border ${
             connected
@@ -122,7 +124,7 @@ export default function DeployView() {
               : "hover:bg-highlight border-transparent"
           } text-text`}
         >
-          {connected ? "DISCONNECT" : "CONNECT"}
+          {connected ? "DISCONNECT" : connecting ? "CONNECTING..." : "CONNECT"}
         </button>
       </div>
 
