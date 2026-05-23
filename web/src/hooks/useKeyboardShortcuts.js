@@ -2,15 +2,24 @@ import { useEffect } from "react";
 import { useWorkspaceStore } from "../store/workspaceStore.js";
 import { useStore } from "../store/treeStore.js";
 
-export function useKeyboardShortcuts(onTreeChange) {
+export function useKeyboardShortcuts(onTreeChange, onAlignTree) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (!e.ctrlKey && !e.metaKey) return;
       const isUndo = e.key === "z";
       const isRedo = e.key === "y";
-      if (!isUndo && !isRedo) return;
+      const isAlign = e.key.toLowerCase() === "s";
+      if (!isUndo && !isRedo && !isAlign) return;
 
       e.preventDefault();
+
+      if (isAlign) {
+        if (onAlignTree) {
+          onAlignTree();
+        }
+        return;
+      }
+
       const { undo, redo, pastStates, futureStates } =
         useWorkspaceStore.temporal.getState();
 
@@ -52,7 +61,7 @@ export function useKeyboardShortcuts(onTreeChange) {
         }
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [onTreeChange]);
+    globalThis.addEventListener("keydown", handleKeyDown);
+    return () => globalThis.removeEventListener("keydown", handleKeyDown);
+  }, [onTreeChange, onAlignTree]);
 }
