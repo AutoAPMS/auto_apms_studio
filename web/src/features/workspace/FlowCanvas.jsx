@@ -160,7 +160,9 @@ export default function FlowCanvas({
     nodesInitialized
   );
 
-  useKeyboardShortcuts(onTreeChange, () => onLayout("DOWN", false, nodes, edges));
+  useKeyboardShortcuts(onTreeChange, () =>
+    onLayout("DOWN", false, nodes, edges)
+  );
 
   const nodesWithHandlers = useMemo(
     () =>

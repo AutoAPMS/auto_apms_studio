@@ -21,8 +21,10 @@ export default function DeployView() {
     error: connectionError,
     ip,
     port,
+    token,
     setIp,
     setPort,
+    setToken,
     connect,
     disconnect,
   } = useDroneStatus();
@@ -34,7 +36,7 @@ export default function DeployView() {
     isCancelling,
     deploy,
     cancel,
-  } = useMission(ip, port);
+  } = useMission(ip, port, token);
   const savedJson = useStore((state) => state.savedJson);
   const selectedTree = useStore((state) => state.selectedTree);
   const selectedTreeId = useStore((state) => state.selectedTreeId);
@@ -98,7 +100,7 @@ export default function DeployView() {
   return (
     <div className="h-full w-full flex flex-col text-text font-mono text-sm select-none">
       <div className="flex-none p-2">
-        <StatusPill connected={connected} ping={ping} />
+        <StatusPill connected={connected} connecting={connecting} ping={ping} />
       </div>
 
       <div className="flex-none h-px bg-divider" />
@@ -107,24 +109,31 @@ export default function DeployView() {
         <ConnectionInput
           ip={ip}
           port={port}
+          token={token}
           onIpChange={setIp}
           onPortChange={setPort}
+          onTokenChange={setToken}
           disabled={connected || connecting}
         />
       </div>
 
       <div className="flex-none p-2">
         <button
-          onClick={connected ? disconnect : connect}
-          disabled={connecting}
+          onClick={connected ? disconnect : connecting ? disconnect : connect}
           // TODO: Extract Red color from Error Message Component and here and add it to the theme
           className={`w-full py-1.5 text-xs font-bold tracking-wider bg-divider rounded transition-colors cursor-pointer border ${
             connected
               ? "hover:bg-[#ff627d] border-highlight"
-              : "hover:bg-highlight border-transparent"
+              : connecting
+                ? "hover:bg-[#ff627d] border-divider"
+                : "hover:bg-highlight border-transparent"
           } text-text`}
         >
-          {connected ? "DISCONNECT" : connecting ? "CONNECTING..." : "CONNECT"}
+          {connected
+            ? "DISCONNECT"
+            : connecting
+              ? "ABORT CONNECTION"
+              : "CONNECT"}
         </button>
       </div>
 

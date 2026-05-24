@@ -24,6 +24,7 @@ export function useDroneStatus() {
   const pingEmaRef = useRef(null);
   const firstReceivedRef = useRef(false);
   const [connecting, setConnecting] = useState(false);
+  const [token, setToken] = useState("");
 
   /**
    * If ping is not received within 3 seconds, the connection is considered lost.
@@ -53,7 +54,7 @@ export function useDroneStatus() {
     setConnecting(true);
     wsRef.current?.close();
 
-    const url = buildWorkspaceUrl(ip, port, WS_PATHS.STATUS);
+    const url = buildWorkspaceUrl(ip, port, WS_PATHS.STATUS, token);
 
     wsRef.current = createWebSocket(url, {
       onOpen: () => {
@@ -61,6 +62,12 @@ export function useDroneStatus() {
       },
 
       onMessage: (data) => {
+        if (data.type === "error") {
+          setConnecting(false);
+          setConnected(false);
+          setError(`Backend error: ${data.message}`);
+          return;
+        }
         if (data.type === "status") {
           setConnecting(false);
           setConnected(true);
@@ -107,7 +114,7 @@ export function useDroneStatus() {
         setPing(null);
       },
     });
-  }, [ip, port, resetPingTimeout]);
+  }, [ip, port, token, resetPingTimeout]);
 
   /* Disconnects from the drone backend. */
   const disconnect = useCallback(() => {
@@ -136,8 +143,10 @@ export function useDroneStatus() {
     error,
     ip,
     port,
+    token,
     setIp,
     setPort,
+    setToken,
     connect,
     disconnect,
   };

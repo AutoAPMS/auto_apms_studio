@@ -10,8 +10,9 @@
  * buildWorkspaceUrl("127.0.0.1", "8000", "/ws/v1/status"),
  * will then create the URL "ws://127.0.0.1:8000/ws/v1/status".
  */
-export function buildWorkspaceUrl(ip, port, path) {
-  return `ws://${ip}:${port}${path}`;
+export function buildWorkspaceUrl(ip, port, path, token = "") {
+  const query = token ? `?token=${encodeURIComponent(token)}` : "";
+  return `ws://${ip}:${port}${path}${query}`;
 }
 
 export const WS_PATHS = {

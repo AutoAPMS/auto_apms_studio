@@ -1,37 +1,68 @@
+import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
+
 export default function ConnectionInput({
   ip,
   port,
+  token,
   onIpChange,
   onPortChange,
+  onTokenChange,
   disabled,
 }) {
+  const [showToken, setShowToken] = useState(false);
+
   const field =
     "flex items-center gap-2 bg-input-field border border-divider rounded-md px-2 py-1.5 hover:border-highlight focus-within:border-highlight transition-colors";
   const input =
     "nodrag flex-1 bg-transparent focus:outline-none text-sm min-w-0 text-text disabled:opacity-50";
 
   return (
-    <div className="flex items-center gap-1.5">
-      <div className={`flex-1 min-w-0 ${field}`}>
-        <input
-          value={ip}
-          onChange={(e) => onIpChange(e.target.value)}
-          disabled={disabled}
-          className={input}
-          placeholder="127.0.0.1"
-        />
-        <span className="text-xs text-divider flex-none">IP</span>
+    <div className="flex flex-col gap-1.5">
+      <div className="flex items-center gap-1.5">
+        <div className={`flex-1 min-w-0 ${field}`}>
+          <input
+            value={ip}
+            onChange={(e) => onIpChange(e.target.value)}
+            disabled={disabled}
+            className={input}
+            placeholder="127.0.0.1"
+          />
+          <span className="text-xs text-divider flex-none">IP</span>
+        </div>
+        <span className="text-divider flex-none">:</span>
+        <div className={`w-28 shrink-0 ${field}`}>
+          <input
+            value={port}
+            onChange={(e) => onPortChange(e.target.value)}
+            disabled={disabled}
+            className={input}
+            placeholder="8000"
+          />
+          <span className="text-xs text-divider flex-none">PORT</span>
+        </div>
       </div>
-      <span className="text-divider flex-none">:</span>
-      <div className={`w-28 shrink-0 ${field}`}>
+      <div className={field}>
         <input
-          value={port}
-          onChange={(e) => onPortChange(e.target.value)}
+          type={showToken ? "text" : "password"}
+          value={token}
+          onChange={(e) => onTokenChange(e.target.value)}
           disabled={disabled}
           className={input}
-          placeholder="8000"
+          placeholder="API Key (optional)"
         />
-        <span className="text-xs text-divider flex-none">PORT</span>
+        <button
+          type="button"
+          onClick={() => setShowToken((v) => !v)}
+          className="flex-none text-text hover:text-highlight transition-colors"
+        >
+          {showToken ? (
+            <EyeOff className="w-3.5 h-3.5" />
+          ) : (
+            <Eye className="w-3.5 h-3.5" />
+          )}
+        </button>
+        <span className="text-xs text-divider flex-none">KEY</span>
       </div>
     </div>
   );

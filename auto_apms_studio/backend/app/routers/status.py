@@ -1,13 +1,16 @@
 import asyncio
 import time
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query
 from ..adapters.ros_node import get_node
+from ..auth import verify_token
 
 router = APIRouter()
 
 
 @router.websocket("/status")
-async def status_websocket(websocket: WebSocket):
+async def status_websocket(websocket: WebSocket, token: str = Query("")):
+    if not await verify_token(websocket, token):
+        return
     await websocket.accept()
     ros_node = get_node()
     ping_ms = None

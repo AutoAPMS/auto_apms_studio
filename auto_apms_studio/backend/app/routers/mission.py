@@ -1,22 +1,25 @@
 import asyncio
 import json
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query
 from rclpy.action import ActionClient
 from auto_apms_interfaces.action import StartTreeExecutor
 from ..adapters.ros_node import get_node
 from ..adapters.ros_bridge import await_rclpy_future
+from ..auth import verify_token
 
 router = APIRouter()
 
 
 @router.websocket("/mission")
-async def mission_websocket(websocket: WebSocket):
+async def mission_websocket(websocket: WebSocket, token: str = Query("")):
     """
     WebSocket Backend Endpoint for single mission.
 
     A single connection represents a single mission.
     When mission is concluded, connection is terminated automatically.
     """
+    if not await verify_token(websocket, token):
+        return
     await websocket.accept()
 
     ros_node = get_node()

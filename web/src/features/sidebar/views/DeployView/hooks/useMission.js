@@ -12,7 +12,7 @@ import {
  * @param port
  * @returns {{missionStatus: unknown, missionError: unknown, isRunning: boolean, isCancelling: boolean, deploy: (function(*): void)|*, cancel: (function(): void)|*}}
  */
-export function useMission(ip, port) {
+export function useMission(ip, port, token) {
   const [missionStatus, setMissionStatus] = useState(null);
   const [missionError, setMissionError] = useState(null);
   const [isRunning, setIsRunning] = useState(false);
@@ -36,7 +36,7 @@ export function useMission(ip, port) {
       wsRef.current = null;
       oldWs?.close();
 
-      const url = buildWorkspaceUrl(ip, port, WS_PATHS.MISSION);
+      const url = buildWorkspaceUrl(ip, port, WS_PATHS.MISSION, token);
 
       const ws = createWebSocket(url, {
         onOpen: () => {
@@ -128,7 +128,7 @@ export function useMission(ip, port) {
 
       wsRef.current = ws;
     },
-    [ip, port]
+    [ip, port, token]
   );
 
   /**
