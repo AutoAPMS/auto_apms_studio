@@ -47,7 +47,7 @@ function ContextMenu({ items, children, onContextMenu }) {
                     item.action();
                     hideContextMenu();
                   }}
-                  className="px-2 py-2 text-left text-text hover:bg-highlight transition-colors text-sm flex items-center justify-between gap-4 cursor-pointer"
+                  className="px-2 py-1 text-left text-text hover:bg-highlight transition-colors text-sm flex items-center justify-between gap-4 cursor-pointer"
                 >
                   {item.label}
                   {item.keybind && (
