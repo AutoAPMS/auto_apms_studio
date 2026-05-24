@@ -1,5 +1,7 @@
 server {
-    listen 80;
+    listen 443 ssl;
+    ssl_certificate /etc/nginx/certs/cert.crt;
+    ssl_certificate_key /etc/nginx/certs/cert.key;
     server_name _;
     root /usr/share/nginx/html;
 
@@ -10,32 +12,19 @@ server {
     location /auto_apms_studio/ {
         try_files $uri $uri/ /auto_apms_studio/index.html;
     }
-
     location = / {
         return 301 $scheme://$http_host/auto_apms_studio/;
     }
-
     location /api/v1/ {
         proxy_pass http://${AUTO_APMS_STUDIO_BACKEND_HOST}:${AUTO_APMS_STUDIO_BACKEND_PORT};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
-
     location /health {
         proxy_pass http://${AUTO_APMS_STUDIO_BACKEND_HOST}:${AUTO_APMS_STUDIO_BACKEND_PORT};
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
-
-    location /v1/ {
-        proxy_pass http://${AUTO_APMS_STUDIO_BACKEND_HOST}:${AUTO_APMS_STUDIO_BACKEND_PORT};
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-
     location /ws/v1/ {
         proxy_pass http://${AUTO_APMS_STUDIO_BACKEND_HOST}:${AUTO_APMS_STUDIO_BACKEND_PORT};
         proxy_http_version 1.1;
@@ -44,4 +33,9 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
     }
+}
+
+server {
+    listen 80;
+    return 301 https://$host$request_uri;
 }
