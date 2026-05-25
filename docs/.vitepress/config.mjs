@@ -37,6 +37,10 @@ export default withMermaid(defineConfig({
     ]
   },
   themeConfig: {
+    outline: {
+      level: [2, 3],
+      label: 'On this page',
+    },
     search: {
       provider: "local",
     },
