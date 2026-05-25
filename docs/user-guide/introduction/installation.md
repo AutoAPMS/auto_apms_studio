@@ -171,6 +171,12 @@ cd ~/auto_apms_studio/web
 docker build -t auto-apms-studio-web .
 ```
 
+You can also use the pre-built Docker image from the GitHub Container Registry:
+
+```bash
+docker pull ghcr.io/autoapms/auto_apms_studio_web:latest
+```
+
 The following environment variables can be overridden at runtime:
 
 | Variable                        | Default          | Description                           |
