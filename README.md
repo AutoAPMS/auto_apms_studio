@@ -34,58 +34,16 @@ Once you are ready to move on, check out the [Installation Guide](https://autoap
 
 ## 🐳 Docker
 
-The frontend is available as a pre-built Docker image on the GitHub Container Registry:
+The AutoAPMS Studio web editor is available as a Docker image. You can use it to run the web editor in a containerized environment.
+Follow the [Installation Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/installation.html) to use the Docker image.
 
-```bash
+The instructions also include informations regarding SSL, nginx configuration, frontend/backend split hosts, the API key, firewall, and network hardening for a secure setup.
+
+You can also use the pre-built image on the GitHub Container Registry:
+
+```
 docker pull ghcr.io/autoapms/auto_apms_studio_web:latest
 ```
-
-Run the container and expose e.g. port 8080 (or any port you prefer):
-
-```bash
-docker run --rm -p 8080:80 -e AUTO_APMS_STUDIO_BACKEND_HOST=my_hostname -e AUTO_APMS_STUDIO_BACKEND_PORT=8000 ghcr.io/autoapms/auto_apms_studio_web:latest
-```
-
-Or through Docker Compose:
-
-```yaml
-services:
-  auto_apms_studio_web:
-    image: ghcr.io/autoapms/auto_apms_studio_web:latest
-    environment:
-      - AUTO_APMS_STUDIO_BACKEND_HOST=my_hostname
-      - AUTO_APMS_STUDIO_BACKEND_PORT=8000
-    ports:
-      - 8080:80
-```
-
-
-Set `AUTO_APMS_STUDIO_BACKEND_HOST` to the hostnamee of your backend (default: `127.0.0.1`). Set `AUTO_APMS_STUDIO_BACKEND_PORT` to the port your backend is listening on (default: `8000`). `/api/v1`, `/health`, and `/ws/v1` requests from the browser are automatically proxied to it.
-
-If you want to connect to a backend running on your host machine, set `AUTO_APMS_STUDIO_BACKEND_HOST` to `host.docker.internal` and pass `--add-host=host.docker.internal:host-gateway` on Linux (not needed on Docker Desktop):
-
-```bash
-docker run --rm -p 8080:80 -e AUTO_APMS_STUDIO_BACKEND_HOST=host.docker.internal -e AUTO_APMS_STUDIO_BACKEND_PORT=8000 --add-host=host.docker.internal:host-gateway ghcr.io/autoapms/auto_apms_studio_web:latest
-```
-
-Or through Docker Compose:
-
-```yaml
-services:
-  auto_apms_studio_web:
-    image: ghcr.io/autoapms/auto_apms_studio_web:latest
-    environment:
-      - AUTO_APMS_STUDIO_BACKEND_HOST=host.docker.internal
-      - AUTO_APMS_STUDIO_BACKEND_PORT=8000
-    ports:
-      - 8080:80
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-```
-
-After setting up the container for the web interface, open your browser and navigate to [http://localhost:8080/auto_apms_studio/](http://localhost:8080/auto_apms_studio/).
-
-> **Note:** You still need to run the backend separately from your ROS 2 workspace (see [Installation Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/installation.html)).
 
 ---
 
