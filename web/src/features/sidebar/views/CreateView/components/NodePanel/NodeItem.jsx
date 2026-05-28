@@ -39,6 +39,14 @@ export default function NodeItem({ node, onClick }) {
   const config = NODE_TYPE_CONFIG[node.node_type] || {};
   const Icon = config.icon;
 
+  const getShortPid = (pid) => {
+    if (!pid) return "";
+    const parts = pid.split("::");
+    return parts.length > 1 ? parts[parts.length - 1] : pid;
+  };
+
+  const shortPid = getShortPid(node.pid);
+
   return (
     <>
       <li
@@ -51,9 +59,22 @@ export default function NodeItem({ node, onClick }) {
         }}
       >
         {Icon && <Icon className="flex-none w-5 h-5" />}
-        <span className="truncate flex-1 text-sm" title={node.node_name}>
-          {node.node_name}
-        </span>
+        <div className="flex flex-col flex-1 min-w-0">
+          <span
+            className="truncate text-sm font-medium leading-tight"
+            title={node.node_name}
+          >
+            {node.node_name}
+          </span>
+          {node.pid && (
+            <span
+              className="truncate text-[10px] text-highlight leading-tight"
+              title={node.pid}
+            >
+              {shortPid}
+            </span>
+          )}
+        </div>
 
         {node.description && (
           <div
