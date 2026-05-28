@@ -16,6 +16,7 @@
   <exec_depend>ros2run</exec_depend>
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>auto_apms_behavior_tree</exec_depend>
+  <exec_depend>auto_apms_ros2behavior</exec_depend>
   <exec_depend>python3-fastapi</exec_depend>
   <exec_depend>python3-uvicorn</exec_depend>
   <exec_depend>python3-pydantic</exec_depend>

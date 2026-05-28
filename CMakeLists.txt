@@ -22,7 +22,6 @@ if(BUILD_FRONTEND)
 
   # Glob source files to detect changes and trigger rebuilds
   file(GLOB_RECURSE FRONTEND_SOURCES
-    CONFIGURE_DEPENDS
     "${FRONTEND_SOURCE_DIR}/src/*"
     "${FRONTEND_SOURCE_DIR}/index.html"
     "${FRONTEND_SOURCE_DIR}/package.json"
@@ -62,7 +61,7 @@ else()
   endif()
 endif()
 
-# Install python package including backend
+# Install python package
 ament_python_install_package(${PROJECT_NAME})
 
 #
