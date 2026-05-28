@@ -34,7 +34,7 @@ export default function TreePanel({ showHeader = true }) {
   };
 
   return (
-    <div className="h-full flex flex-col overflow-hidden">
+    <div className="flex flex-col min-h-0 overflow-hidden">
       {showHeader && (
         <SectionHeader
           icon={Settings}

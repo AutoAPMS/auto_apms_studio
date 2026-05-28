@@ -139,7 +139,7 @@ export default function DeployView() {
 
       <div className="flex-none h-px bg-divider" />
 
-      <div className="flex-1 min-h-0 p-2 flex flex-col gap-2">
+      <div className="flex-1 min-h-0 p-2 flex flex-col gap-2 overflow-hidden">
         <p className="text-xs font-bold text-text text-center tracking-wider">
           SELECT BEHAVIOR TREE
         </p>
