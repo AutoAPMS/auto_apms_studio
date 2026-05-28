@@ -9,7 +9,7 @@ function SubtreeNode({ id, data }) {
   const [autoremap, setAutoremap] = useState(
     data.nodeData?.attributes?.autoremap === "true"
   );
-  const [isPortsOpen, setIsPortsOpen] = useState(false);
+  const [isPortsOpen, setIsPortsOpen] = useState(true);
   const [instanceName, setInstanceName] = useState(
     data?.nodeData?.attributes?.name ?? ""
   );

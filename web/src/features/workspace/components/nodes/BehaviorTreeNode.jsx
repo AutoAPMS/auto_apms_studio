@@ -6,7 +6,7 @@ import NodeContextMenu from "../popups/NodeContextMenu.jsx";
 import NodeAttributes from "./NodeAttributes.jsx";
 
 function BehaviorTreeNode({ id, data }) {
-  const [isPortsOpen, setIsPortsOpen] = useState(false);
+  const [isPortsOpen, setIsPortsOpen] = useState(true);
   const [instanceName, setInstanceName] = useState(
     data?.nodeData?.attributes?.name ?? ""
   );
