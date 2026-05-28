@@ -12,6 +12,10 @@ export default function ConnectionInput({
 }) {
   const [showToken, setShowToken] = useState(false);
 
+  const queryParams = new URLSearchParams(window.location.search);
+  const placeholderIp = queryParams.get("ip") || "127.0.0.1";
+  const placeholderPort = queryParams.get("port") || "8000";
+
   const field =
     "flex items-center gap-2 bg-input-field border border-divider rounded-md px-2 py-1.5 hover:border-highlight focus-within:border-highlight transition-colors";
   const input =
@@ -26,7 +30,7 @@ export default function ConnectionInput({
             onChange={(e) => onIpChange(e.target.value)}
             disabled={disabled}
             className={input}
-            placeholder="127.0.0.1"
+            placeholder={placeholderIp}
           />
           <span className="text-xs text-divider flex-none">IP</span>
         </div>
@@ -37,7 +41,7 @@ export default function ConnectionInput({
             onChange={(e) => onPortChange(e.target.value)}
             disabled={disabled}
             className={input}
-            placeholder="8000"
+            placeholder={placeholderPort}
           />
           <span className="text-xs text-divider flex-none">PORT</span>
         </div>

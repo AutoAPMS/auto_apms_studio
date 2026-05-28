@@ -17,14 +17,21 @@ export function useDroneStatus() {
   const [connected, setConnected] = useState(false);
   const [ping, setPing] = useState(null);
   const [error, setError] = useState(null);
-  const [ip, setIp] = useState("127.0.0.1");
-  const [port, setPort] = useState("8000");
+
+  const queryParams = new URLSearchParams(window.location.search);
+  const defaultIp = queryParams.get("ip") || "127.0.0.1";
+  const defaultPort = queryParams.get("port") || "8000";
+  const defaultToken = queryParams.get("token") || "";
+
+  const [ip, setIp] = useState(defaultIp);
+  const [port, setPort] = useState(defaultPort);
+  const [token, setToken] = useState(defaultToken);
+
   const wsRef = useRef(null);
   const pingTimeoutRef = useRef(null);
   const pingEmaRef = useRef(null);
   const firstReceivedRef = useRef(false);
   const [connecting, setConnecting] = useState(false);
-  const [token, setToken] = useState("");
 
   /**
    * If ping is not received within 3 seconds, the connection is considered lost.

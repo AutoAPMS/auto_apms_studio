@@ -127,4 +127,17 @@ describe("useDroneStatus", () => {
     act(() => result.current.connect());
     expect(mockWs.close).toHaveBeenCalled();
   });
+
+  it("should initialize with values from URL parameters", () => {
+    const originalLocation = window.location;
+    delete window.location;
+    window.location = new URL("http://localhost?ip=1.2.3.4&port=1234&token=secret");
+
+    const { result } = renderHook(() => useDroneStatus());
+    expect(result.current.ip).toBe("1.2.3.4");
+    expect(result.current.port).toBe("1234");
+    expect(result.current.token).toBe("secret");
+
+    window.location = originalLocation;
+  });
 });
