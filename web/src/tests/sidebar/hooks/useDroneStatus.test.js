@@ -38,7 +38,7 @@ describe("useDroneStatus", () => {
     expect(result.current.connected).toBe(false);
     expect(result.current.ping).toBeNull();
     expect(result.current.error).toBeNull();
-    expect(result.current.ip).toBe("127.0.0.1");
+    expect(result.current.ip).toBe("localhost");
     expect(result.current.port).toBe("8000");
   });
 
@@ -131,7 +131,9 @@ describe("useDroneStatus", () => {
   it("should initialize with values from URL parameters", () => {
     const originalLocation = window.location;
     delete window.location;
-    window.location = new URL("http://localhost?ip=1.2.3.4&port=1234&token=secret");
+    window.location = new URL(
+      "http://localhost?ip=1.2.3.4&port=1234&token=secret"
+    );
 
     const { result } = renderHook(() => useDroneStatus());
     expect(result.current.ip).toBe("1.2.3.4");

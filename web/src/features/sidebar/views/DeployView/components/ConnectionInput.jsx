@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { useStore } from "../../../../../store/treeStore.js";
 
 export default function ConnectionInput({
   ip,
@@ -12,9 +13,12 @@ export default function ConnectionInput({
 }) {
   const [showToken, setShowToken] = useState(false);
 
+  const storeIp = useStore((state) => state.backendIp);
+  const storePort = useStore((state) => state.backendPort);
+
   const queryParams = new URLSearchParams(window.location.search);
-  const placeholderIp = queryParams.get("ip") || "127.0.0.1";
-  const placeholderPort = queryParams.get("port") || "8000";
+  const placeholderIp = queryParams.get("ip") || storeIp || "127.0.0.1";
+  const placeholderPort = queryParams.get("port") || storePort || "8000";
 
   const field =
     "flex items-center gap-2 bg-input-field border border-divider rounded-md px-2 py-1.5 hover:border-highlight focus-within:border-highlight transition-colors";

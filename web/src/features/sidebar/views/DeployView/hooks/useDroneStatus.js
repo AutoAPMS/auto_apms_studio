@@ -4,6 +4,7 @@ import {
   WS_PATHS,
   createWebSocket,
 } from "../services/droneWebSocket";
+import { useStore } from "../../../../../store/treeStore.js";
 
 const PING_TIMEOUT_MS = 3000;
 
@@ -18,14 +19,31 @@ export function useDroneStatus() {
   const [ping, setPing] = useState(null);
   const [error, setError] = useState(null);
 
+  const storeIp = useStore((state) => state.backendIp);
+  const storePort = useStore((state) => state.backendPort);
+
   const queryParams = new URLSearchParams(window.location.search);
-  const defaultIp = queryParams.get("ip") || "127.0.0.1";
-  const defaultPort = queryParams.get("port") || "8000";
+  const defaultIp = queryParams.get("ip") || storeIp || "127.0.0.1";
+  const defaultPort = queryParams.get("port") || storePort || "8000";
   const defaultToken = queryParams.get("token") || "";
 
   const [ip, setIp] = useState(defaultIp);
   const [port, setPort] = useState(defaultPort);
   const [token, setToken] = useState(defaultToken);
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    if (!queryParams.get("ip")) {
+      setIp(storeIp);
+    }
+  }, [storeIp]);
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search);
+    if (!queryParams.get("port")) {
+      setPort(storePort);
+    }
+  }, [storePort]);
 
   const wsRef = useRef(null);
   const pingTimeoutRef = useRef(null);
