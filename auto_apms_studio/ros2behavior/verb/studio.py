@@ -64,6 +64,19 @@ class StudioVerb(VerbExtension):
             action="store_true",
             help="Launch a tree executor node together with the other processes.",
         )
+        parser.add_argument(
+            "--executor-namespace",
+            "-n",
+            default=None,
+            metavar="NAMESPACE",
+            help="ROS 2 namespace for the tree executor node.",
+        )
+        parser.add_argument(
+            "--executor-name",
+            default="tree_executor",
+            metavar="NAME",
+            help="ROS 2 node name for the tree executor node (default: %(default)s).",
+        )
 
     def main(self, *, args):
         processes = []
@@ -105,38 +118,48 @@ class StudioVerb(VerbExtension):
         rows.append(
             (
                 "Backend",
-                _url(args.backend_host, args.backend_port)
-                if launch_backend
-                else _disabled("disabled"),
+                (
+                    _url(args.backend_host, args.backend_port)
+                    if launch_backend
+                    else _disabled("disabled")
+                ),
             )
         )
         if _START_WEB is not None:
             rows.append(
                 (
                     "Frontend",
-                    _url(args.frontend_host, args.frontend_port)
-                    if launch_frontend
-                    else _disabled("disabled"),
+                    (
+                        _url(args.frontend_host, args.frontend_port)
+                        if launch_frontend
+                        else _disabled("disabled")
+                    ),
                 )
             )
         else:
             rows.append(("Frontend", _disabled("not built")))
-        rows.append(
-            (
-                "Executor",
-                f"{_BLUE}enabled{_RESET}"
-                if args.launch_executor
-                else _disabled("disabled"),
+        executor_value = _disabled("disabled")
+        if args.launch_executor:
+            ns = (
+                (
+                    args.executor_namespace
+                    if args.executor_namespace.startswith("/")
+                    else f"/{args.executor_namespace}"
+                )
+                if args.executor_namespace
+                else None
             )
-        )
+            name = args.executor_name
+            node_path = f"{ns}/{name}" if ns else f"/{name}"
+            executor_value = f"{_BLUE}enabled{_RESET} {_DIM}({node_path}){_RESET}"
+        rows.append(("Executor", executor_value))
 
         label_width = max(len(label) for label, _ in rows)
-        sep = f"{_BLUE}{'─' * 32}{_RESET}"
-        print(f"\n{_BOLD}{_BLUE}  AutoAPMS Studio{_RESET}")
-        print(sep)
+        bar = f"{_BLUE}│{_RESET}"
+        print(f"\n  {_BOLD}{_BLUE}AutoAPMS Studio{_RESET}\n")
         for label, value in rows:
-            print(f"  {_BOLD}{label:<{label_width}}{_RESET}  {value}")
-        print(f"{sep}\n")
+            print(f"  {bar} {_BOLD}{label:<{label_width}}{_RESET}  {value}")
+        print()
 
         if launch_frontend:
             processes.append(
@@ -165,11 +188,19 @@ class StudioVerb(VerbExtension):
             )
 
         if args.launch_executor:
-            processes.append(
-                subprocess.Popen(
-                    ["ros2", "run", "auto_apms_behavior_tree", "tree_executor"]
+            executor_cmd = ["ros2", "run", "auto_apms_behavior_tree", "tree_executor"]
+            ros_args = []
+            if args.executor_namespace:
+                ns = (
+                    args.executor_namespace
+                    if args.executor_namespace.startswith("/")
+                    else f"/{args.executor_namespace}"
                 )
-            )
+                ros_args += ["-r", f"__ns:={ns}"]
+            ros_args += ["-r", f"__node:={args.executor_name}"]
+            if ros_args:
+                executor_cmd += ["--ros-args"] + ros_args
+            processes.append(subprocess.Popen(executor_cmd))
 
         if not processes:
             print("No components selected for launch.")
