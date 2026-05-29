@@ -3,7 +3,7 @@ import { ChevronDown } from "lucide-react";
 import PortItem from "../ui/PortItem.jsx";
 
 function NodeAttributes({ nodeAttributes, onAttributeChange, readOnly }) {
-  const [isAttributesOpen, setIsAttributesOpen] = useState(true);
+  const [isAttributesOpen, setIsAttributesOpen] = useState(false);
 
   if (!nodeAttributes?.length) return null;
 
