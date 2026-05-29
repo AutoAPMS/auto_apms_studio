@@ -1,0 +1,51 @@
+name: Build and Release
+on:
+  push:
+    tags:
+      - 'v*'
+permissions:
+  contents: write
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build Frontend
+        run: |
+          cd web
+          npm ci && npm run build
+
+      - name: Package Frontend
+        run: |
+          zip -r auto-apms-studio-${{ github.ref_name }}-frontend.zip web/dist/
+
+      - name: Package Backend
+        run: |
+          zip -r auto-apms-studio-${{ github.ref_name }}-backend.zip \
+            auto_apms_studio/ \
+            launch/ \
+            scripts/ \
+            --exclude "*.pyc" \
+            --exclude "*/__pycache__/*"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            auto-apms-studio-${{ github.ref_name }}-frontend.zip
+            auto-apms-studio-${{ github.ref_name }}-backend.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
