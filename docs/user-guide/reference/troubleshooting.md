@@ -12,7 +12,9 @@ If AutoAPMS Studio shows a connection error or the Backend indicator stays red:
 - Check that the host and port in the Settings match the Backend configuration (default: `localhost:8000`)
 - If you are connecting remotely, make sure the Backend is reachable from your machine (same network, VPN, etc.)
 - Check if a firewall is blocking the port
- 
+
+---
+
 ### Backend starts but immediately stops
 
 - Make sure your ROS 2 environment is sourced correctly: `source install/setup.bash`
@@ -21,6 +23,8 @@ If AutoAPMS Studio shows a connection error or the Backend indicator stays red:
   rosdep update
   rosdep install --from-paths src --ignore-src -y
 ```
+
+---
 
 ### "Network error: Failed to fetch node modules. Using local fallback data."
 
@@ -31,3 +35,44 @@ If AutoAPMS Studio shows a connection error or the Backend indicator stays red:
 ::: info Still stuck?
 If your issue is not listed here, feel free to open an issue on [GitHub](https://github.com/AutoAPMS/auto_apms_studio).
 :::
+
+---
+
+### `403` on WebSocket
+
+- Check the API Key and the `ALLOWED_NETWORK` whitelist.
+
+---
+
+### `CONNECTING...` forever
+
+- Check Backend IP and Port, verify the backend is running.
+
+---
+
+### Browser shows "Not Secure"
+
+- Accept the certificate exception or install the CA on the client device (see [SSL Certificate Setup](#_1-ssl-certificate-setup-pc-1-one-time)).
+
+---
+
+### `wss://` connection fails
+
+- Make sure you access the page via `https://`, not `http://`.
+
+---
+
+### Backend changes not applied
+
+- Run `colcon build` and `source install/setup.bash` again.
+
+---
+
+### Container port already in use
+
+- Run `docker ps` to find the container ID:
+- Run `docker stop <CONTAINED-ID>` then restart the container.
+
+  ::: info Still stuck?
+  If your issue is not listed here, feel free to open an issue on [GitHub](https://github.com/AutoAPMS/auto_apms_studio).
+  :::

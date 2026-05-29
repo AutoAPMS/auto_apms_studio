@@ -48,7 +48,7 @@ export function flowToTreeData(nodes, edges) {
     ];
 
     allPorts.forEach((port) => {
-      if (port.default !== "" && port.default !== undefined) {
+      if (port.default !== undefined) {
         attrs[`@_${port.name}`] = port.default;
       }
     });

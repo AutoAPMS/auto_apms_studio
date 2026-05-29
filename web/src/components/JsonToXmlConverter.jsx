@@ -60,11 +60,17 @@ export default function JsonToXmlConverter({
   if (autoDownload) {
     return null;
   }
+
+  const handleDownload = () => {
+    void downloadXml(xmlOutput, filename);
+  };
+
   return (
     <button
-      onClick={downloadXml}
       {...buttonProps}
-      disabled={!data || !entryTreeId}
+      type="button"
+      onClick={handleDownload}
+      disabled={!xmlOutput}
     >
       {children || "Export JSON to XML"}
     </button>

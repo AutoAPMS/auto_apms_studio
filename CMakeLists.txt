@@ -20,18 +20,23 @@ if(BUILD_FRONTEND)
     message(FATAL_ERROR "BUILD_FRONTEND is ON but npm was not found. Please install Node.js and npm.")
   endif()
 
-  # Custom command to copy frontend source to build dir, install deps, and build
+  # Glob source files to detect changes and trigger rebuilds
+  file(GLOB_RECURSE FRONTEND_SOURCES
+    "${FRONTEND_SOURCE_DIR}/src/*"
+    "${FRONTEND_SOURCE_DIR}/index.html"
+    "${FRONTEND_SOURCE_DIR}/package.json"
+    "${FRONTEND_SOURCE_DIR}/vite.config.js"
+  )
+
+  # Custom command to install deps and build directly from the source directory
   # NOTE: Vite build is run twice as a workaround for a caching issue where the first build
   # doesn't properly include all CSS (ReactFlow styles). The second build produces correct output.
-  file(MAKE_DIRECTORY ${FRONTEND_BUILD_DIR})
-  file(COPY ${FRONTEND_SOURCE_DIR}/
-    DESTINATION ${FRONTEND_BUILD_DIR}
-  )
   add_custom_command(
     OUTPUT ${FRONTEND_BUILD_DIR}/dist/index.html
-    WORKING_DIRECTORY ${FRONTEND_BUILD_DIR}
+    WORKING_DIRECTORY ${FRONTEND_SOURCE_DIR}
     COMMAND ${NPM_EXECUTABLE} ci
-    COMMAND ${NPM_EXECUTABLE} run build
+    COMMAND ${NPM_EXECUTABLE} run build -- --outDir ${FRONTEND_BUILD_DIR}/dist --emptyOutDir
+    DEPENDS ${FRONTEND_SOURCES}
     COMMENT "Building frontend with npm and Vite"
     VERBATIM
   )
@@ -56,7 +61,7 @@ else()
   endif()
 endif()
 
-# Install python package including backend
+# Install python package
 ament_python_install_package(${PROJECT_NAME})
 
 #

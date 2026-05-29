@@ -22,6 +22,14 @@ const VARIANTS = {
   },
 };
 
+export function ErrorAlertContainer({ children }) {
+  return (
+    <div className="fixed top-5 right-5 z-30 flex flex-col gap-2 w-100">
+      {children}
+    </div>
+  );
+}
+
 export function ErrorAlert({ error, onClose, status = "error" }) {
   if (!error) return null;
 
@@ -29,7 +37,7 @@ export function ErrorAlert({ error, onClose, status = "error" }) {
 
   return (
     <div
-      className={`fixed top-5 right-5 z-30 w-100 h-14 bg-input-field ${border} border rounded-md overflow-hidden px-3`}
+      className={`w-full h-14 bg-input-field ${border} border rounded-md overflow-hidden px-3`}
     >
       <div className="flex items-center gap-3 h-full">
         <div

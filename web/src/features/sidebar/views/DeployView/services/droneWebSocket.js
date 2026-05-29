@@ -3,20 +3,19 @@
  *
  * @param {string} ip    – IPv4-Address or hostname, e.g.: "127.0.0.1" (localhost)
  * @param {string} port  – Port as a String or Number, e.g.: "8000" (default)
- * @param {string} path  – Path with beginning slash, e.g.: "/v1/status/ws"
- * @returns {string}     – Fertige URL, z.B. "ws://127.0.0.1:8000/v1/status/ws"
- *
- * For Example:
- * buildWorkspaceUrl("127.0.0.1", "8000", "/v1/status/ws"),
- * will then create the URL "ws://127.0.0.1:8000/v1/status/ws".
+ * @param {string} path  – Path with beginning slash, e.g.: "/ws/v1/status"
+ * @param {string} token – Optional API key token
+ * @returns {string}     – Finished URL, e.g. "wss://127.0.0.1:8000/ws/v1/status?token=..."
  */
-export function buildWorkspaceUrl(ip, port, path) {
-  return `ws://${ip}:${port}${path}`;
+export function buildWorkspaceUrl(ip, port, path, token = "") {
+  const protocol = window.location.protocol === "https:" ? "wss" : "ws";
+  const query = token ? `?token=${encodeURIComponent(token)}` : "";
+  return `${protocol}://${ip}:${port}${path}${query}`;
 }
 
 export const WS_PATHS = {
-  STATUS: "/v1/status/ws",
-  MISSION: "/v1/mission/ws/mission",
+  STATUS: "/ws/v1/status",
+  MISSION: "/ws/v1/mission",
 };
 
 /**

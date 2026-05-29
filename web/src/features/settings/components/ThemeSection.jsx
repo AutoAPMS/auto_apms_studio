@@ -5,9 +5,7 @@ function ThemeSection({ theme, setTheme }) {
     { value: "dark", label: "Dark Theme (Default)" },
     { value: "light", label: "Light Theme" },
     { value: "nightfall", label: "Nightfall Theme" },
-    { value: "catppuccin-macchiato", label: "Catppuccin Macchiato" },
-    { value: "inferno", label: "Inferno Theme (Experimental)" },
-    { value: "glamour", label: "Glamour Theme (Experimental)" },
+    { value: "inferno", label: "Inferno Theme" },
   ];
 
   const previewVars = [

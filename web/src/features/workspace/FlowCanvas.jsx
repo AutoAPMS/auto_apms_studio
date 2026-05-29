@@ -63,8 +63,6 @@ export default function FlowCanvas({
     useConnectionNodeList();
   const nodesInitialized = useRef(false);
 
-  useKeyboardShortcuts(onTreeChange);
-
   const nodeTypes = useMemo(
     () => ({
       behaviorTreeNode: BehaviorTreeNode,
@@ -160,6 +158,10 @@ export default function FlowCanvas({
     setTreeLayers,
     elkOptions,
     nodesInitialized
+  );
+
+  useKeyboardShortcuts(onTreeChange, () =>
+    onLayout("DOWN", false, nodes, edges)
   );
 
   const nodesWithHandlers = useMemo(

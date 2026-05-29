@@ -64,7 +64,7 @@ function EmptyWorkspaceModal({ ref }) {
 
         <div className="px-6 py-3 border-t border-divider text-sm flex items-center justify-center">
           <a
-            href="https://auto-apms-studio-d50829.pages.git-ce.rwth-aachen.de/docs/"
+            href="https://autoapms.github.io/auto_apms_studio/docs/"
             tabIndex={-1}
             target="_blank"
             rel="noopener noreferrer"

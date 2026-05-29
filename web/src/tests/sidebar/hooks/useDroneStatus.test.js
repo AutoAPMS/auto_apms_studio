@@ -9,8 +9,8 @@ const { mockCreateWebSocket } = vi.hoisted(() => ({
 vi.mock(
   "../../../features/sidebar/views/DeployView/services/droneWebSocket.js",
   () => ({
-    buildWorkspaceUrl: vi.fn(() => "ws://127.0.0.1:8000/v1/status/ws"),
-    WS_PATHS: { STATUS: "/v1/status/ws", MISSION: "/v1/mission/ws/mission" },
+    buildWorkspaceUrl: vi.fn(() => "ws://127.0.0.1:8000/ws/v1/status"),
+    WS_PATHS: { STATUS: "/ws/v1/status", MISSION: "/ws/v1/mission" },
     createWebSocket: mockCreateWebSocket,
   })
 );
@@ -38,7 +38,7 @@ describe("useDroneStatus", () => {
     expect(result.current.connected).toBe(false);
     expect(result.current.ping).toBeNull();
     expect(result.current.error).toBeNull();
-    expect(result.current.ip).toBe("127.0.0.1");
+    expect(result.current.ip).toBe("localhost");
     expect(result.current.port).toBe("8000");
   });
 
@@ -126,5 +126,20 @@ describe("useDroneStatus", () => {
     act(() => result.current.connect());
     act(() => result.current.connect());
     expect(mockWs.close).toHaveBeenCalled();
+  });
+
+  it("should initialize with values from URL parameters", () => {
+    const originalLocation = window.location;
+    delete window.location;
+    window.location = new URL(
+      "http://localhost?ip=1.2.3.4&port=1234&token=secret"
+    );
+
+    const { result } = renderHook(() => useDroneStatus());
+    expect(result.current.ip).toBe("1.2.3.4");
+    expect(result.current.port).toBe("1234");
+    expect(result.current.token).toBe("secret");
+
+    window.location = originalLocation;
   });
 });

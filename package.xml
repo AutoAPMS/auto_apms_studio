@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package format="3">
   <name>auto_apms_studio</name>
-  <version>0.1.1</version>
+  <version>0.2.0</version>
   <description>AutoAPMS Studio</description>
 
   <maintainer email="autoapms-studio@proton.me">AutoAPMS Studio Team</maintainer>
@@ -16,6 +16,7 @@
   <exec_depend>ros2run</exec_depend>
   <exec_depend>ament_index_python</exec_depend>
   <exec_depend>auto_apms_behavior_tree</exec_depend>
+  <exec_depend>auto_apms_ros2behavior</exec_depend>
   <exec_depend>python3-fastapi</exec_depend>
   <exec_depend>python3-uvicorn</exec_depend>
   <exec_depend>python3-pydantic</exec_depend>

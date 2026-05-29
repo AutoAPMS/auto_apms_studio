@@ -4,6 +4,7 @@ import { useKeyboardShortcuts } from "../../../hooks/useKeyboardShortcuts.js";
 
 const undoMock = vi.fn();
 const redoMock = vi.fn();
+const alignMock = vi.fn();
 
 vi.mock("../../../store/workspaceStore.js", () => {
   return {
@@ -126,5 +127,31 @@ describe("useKeyboardShortcuts", () => {
 
     expect(undoMock).not.toHaveBeenCalled();
     expect(redoMock).not.toHaveBeenCalled();
+  });
+
+  it("should call the align callback when pressing Ctrl+S", () => {
+    renderHook(() => useKeyboardShortcuts(undefined, alignMock));
+
+    act(() => {
+      window.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "s", ctrlKey: true })
+      );
+    });
+
+    expect(alignMock).toHaveBeenCalledTimes(1);
+    expect(undoMock).not.toHaveBeenCalled();
+    expect(redoMock).not.toHaveBeenCalled();
+  });
+
+  it("should call the align callback when pressing Cmd+S on Mac", () => {
+    renderHook(() => useKeyboardShortcuts(undefined, alignMock));
+
+    act(() => {
+      window.dispatchEvent(
+        new KeyboardEvent("keydown", { key: "s", metaKey: true })
+      );
+    });
+
+    expect(alignMock).toHaveBeenCalledTimes(1);
   });
 });

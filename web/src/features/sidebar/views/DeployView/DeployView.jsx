@@ -15,21 +15,28 @@ import { useState } from "react";
 export default function DeployView() {
   const {
     connected,
+    connecting,
     ping,
     executorAvailable,
     error: connectionError,
     ip,
     port,
+    token,
     setIp,
     setPort,
+    setToken,
     connect,
     disconnect,
   } = useDroneStatus();
   const [deployError, setDeployError] = useState(null);
-  const { missionStatus, missionError, isRunning, deploy, cancel } = useMission(
-    ip,
-    port
-  );
+  const {
+    missionStatus,
+    missionError,
+    isRunning,
+    isCancelling,
+    deploy,
+    cancel,
+  } = useMission(ip, port, token);
   const savedJson = useStore((state) => state.savedJson);
   const selectedTree = useStore((state) => state.selectedTree);
   const selectedTreeId = useStore((state) => state.selectedTreeId);
@@ -93,7 +100,7 @@ export default function DeployView() {
   return (
     <div className="h-full w-full flex flex-col text-text font-mono text-sm select-none">
       <div className="flex-none p-2">
-        <StatusPill connected={connected} ping={ping} />
+        <StatusPill connected={connected} connecting={connecting} ping={ping} />
       </div>
 
       <div className="flex-none h-px bg-divider" />
@@ -102,29 +109,37 @@ export default function DeployView() {
         <ConnectionInput
           ip={ip}
           port={port}
+          token={token}
           onIpChange={setIp}
           onPortChange={setPort}
-          disabled={connected}
+          onTokenChange={setToken}
+          disabled={connected || connecting}
         />
       </div>
 
       <div className="flex-none p-2">
         <button
-          onClick={connected ? disconnect : connect}
+          onClick={connected ? disconnect : connecting ? disconnect : connect}
           // TODO: Extract Red color from Error Message Component and here and add it to the theme
           className={`w-full py-1.5 text-xs font-bold tracking-wider bg-divider rounded transition-colors cursor-pointer border ${
             connected
               ? "hover:bg-[#ff627d] border-highlight"
-              : "hover:bg-highlight border-transparent"
+              : connecting
+                ? "hover:bg-[#ff627d] border-divider"
+                : "hover:bg-highlight border-transparent"
           } text-text`}
         >
-          {connected ? "DISCONNECT" : "CONNECT"}
+          {connected
+            ? "DISCONNECT"
+            : connecting
+              ? "ABORT CONNECTION"
+              : "CONNECT"}
         </button>
       </div>
 
       <div className="flex-none h-px bg-divider" />
 
-      <div className="flex-1 min-h-0 p-2 flex flex-col gap-2">
+      <div className="flex-1 min-h-0 p-2 flex flex-col gap-2 overflow-hidden">
         <p className="text-xs font-bold text-text text-center tracking-wider">
           SELECT BEHAVIOR TREE
         </p>
@@ -173,9 +188,10 @@ export default function DeployView() {
         </div>
         <button
           onClick={cancel}
-          className="flex-1 py-2 text-xs font-bold tracking-widest bg-input-field hover:bg-highlight text-text rounded cursor-pointer transition-colors border border-divider"
+          disabled={!isRunning || isCancelling}
+          className="flex-1 py-2 text-xs font-bold tracking-widest bg-input-field hover:bg-highlight text-text rounded cursor-pointer transition-colors border border-divider disabled:opacity-40 disabled:cursor-not-allowed"
         >
-          CANCEL
+          {isCancelling ? "CANCELLING" : "CANCEL"}
         </button>
       </div>
     </div>

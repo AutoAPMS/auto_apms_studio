@@ -14,6 +14,10 @@ export default function useTreeLayout(
   const onLayout = useCallback(
     (direction, wasTreeLoaded, nodes, edges) => {
       const opts = { "elk.direction": direction, ...elkOptions };
+      const fitViewOptions = {
+        padding: 1,
+        duration: 300,
+      };
 
       const nodesToLayout = wasTreeLoaded
         ? nodes
@@ -28,11 +32,11 @@ export default function useTreeLayout(
           setTreeLayers(layoutedLayers);
           setNodes(layoutedNodes);
           setEdges(layoutedEdges);
-          return fitView();
+          return fitView(fitViewOptions);
         }
       );
     },
-    [elkOptions, setNodes, setEdges, fitView, setTreeLayers]
+    [elkOptions, fitView, setEdges, setNodes, setTreeLayers]
   );
 
   return { onLayout };

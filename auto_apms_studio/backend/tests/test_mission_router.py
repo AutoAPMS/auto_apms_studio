@@ -28,7 +28,7 @@ class TestMissionRouter:
         mock_ac_cls.return_value = mock_ac
 
         client = TestClient(app)
-        with client.websocket_connect("/v1/mission/ws/mission") as ws:
+        with client.websocket_connect("/ws/v1/mission") as ws:
             ws.send_text(json.dumps({"build_request": "<root/>"}))
             msg1 = ws.receive_json()
             assert msg1["type"] == "status"
@@ -47,7 +47,7 @@ class TestMissionRouter:
         mock_ac_cls.return_value = mock_ac
 
         client = TestClient(app)
-        with client.websocket_connect("/v1/mission/ws/mission") as ws:
+        with client.websocket_connect("/ws/v1/mission") as ws:
             ws.send_text(json.dumps({"build_request": "<root/>"}))
             messages = [ws.receive_json() for _ in range(3)]
             types = [m["type"] for m in messages]
@@ -76,7 +76,7 @@ class TestMissionRouter:
         mock_ac_cls.return_value = mock_ac
 
         client = TestClient(app)
-        with client.websocket_connect("/v1/mission/ws/mission") as ws:
+        with client.websocket_connect("/ws/v1/mission") as ws:
             ws.send_text(json.dumps({"build_request": "<root/>"}))
             messages = [ws.receive_json() for _ in range(4)]
             result_msg = next(m for m in messages if m["type"] == "result")
@@ -104,7 +104,7 @@ class TestMissionRouter:
         mock_ac_cls.return_value = mock_ac
 
         client = TestClient(app)
-        with client.websocket_connect("/v1/mission/ws/mission") as ws:
+        with client.websocket_connect("/ws/v1/mission") as ws:
             ws.send_text(json.dumps({"build_request": "<root/>"}))
             messages = [ws.receive_json() for _ in range(4)]
             result_msg = next(m for m in messages if m["type"] == "result")
@@ -117,7 +117,7 @@ class TestMissionRouter:
         mock_ac_cls.return_value = mock_ac
 
         client = TestClient(app)
-        with client.websocket_connect("/v1/mission/ws/mission") as ws:
+        with client.websocket_connect("/ws/v1/mission") as ws:
             ws.send_text(json.dumps({"build_request": "<root/>"}))
             ws.receive_json()
             msg = ws.receive_json()
@@ -145,7 +145,7 @@ class TestMissionRouter:
         mock_ac_cls.return_value = mock_ac
 
         client = TestClient(app)
-        with client.websocket_connect("/v1/mission/ws/mission") as ws:
+        with client.websocket_connect("/ws/v1/mission") as ws:
             ws.send_text(json.dumps({"build_request": "<root/>"}))
             messages = [ws.receive_json() for _ in range(4)]
             result_msg = next(m for m in messages if m["type"] == "result")
@@ -177,7 +177,7 @@ class TestMissionRouter:
             side_effect=Exception("load error"),
         ):
             client = TestClient(app)
-            with client.websocket_connect("/v1/mission/ws/mission") as ws:
+            with client.websocket_connect("/ws/v1/mission") as ws:
                 ws.send_text(
                     json.dumps(
                         {"build_request": "<root/>", "node_manifest": "some::identity"}

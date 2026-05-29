@@ -66,7 +66,7 @@ export default function TreeList({ searchText }) {
     <>
       <ul
         key={`tree-list-${searchText.length > 0 ? "search" : "normal"}`}
-        className="h-full overflow-y-auto border border-divider rounded-md text-text p-2"
+        className="flex-1 min-h-0 overflow-y-auto border border-divider rounded-md text-text p-2"
       >
         {treeList.map((tree) => (
           <TreeItem

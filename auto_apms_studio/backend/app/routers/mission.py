@@ -1,22 +1,25 @@
 import asyncio
 import json
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query
 from rclpy.action import ActionClient
 from auto_apms_interfaces.action import StartTreeExecutor
 from ..adapters.ros_node import get_node
 from ..adapters.ros_bridge import await_rclpy_future
+from ..auth import verify_token
 
 router = APIRouter()
 
 
-@router.websocket("/ws/mission")
-async def mission_websocket(websocket: WebSocket):
+@router.websocket("/mission")
+async def mission_websocket(websocket: WebSocket, token: str = Query("")):
     """
     WebSocket Backend Endpoint for single mission.
 
     A single connection represents a single mission.
     When mission is concluded, connection is terminated automatically.
     """
+    if not await verify_token(websocket, token):
+        return
     await websocket.accept()
 
     ros_node = get_node()
@@ -87,28 +90,89 @@ async def mission_websocket(websocket: WebSocket):
 
         await websocket.send_json({"type": "status", "message": "Mission started!"})
 
-        result_future = goal_handle.get_result_async()
+        cancel_event = asyncio.Event()
 
         async def _drain_feedback():
             while True:
                 msg = await feedback_queue.get()
                 await websocket.send_json(msg)
 
-        feedback_task = asyncio.create_task(_drain_feedback())
-        try:
-            result_wrapper = await await_rclpy_future(result_future)
-        finally:
-            feedback_task.cancel()
+        async def _listen_for_cancel():
+            """Listen for a cancel message or an unexpected disconnect."""
             try:
-                await feedback_task
-            except asyncio.CancelledError:
+                while True:
+                    raw = await websocket.receive_text()
+                    try:
+                        data = json.loads(raw)
+                        if data.get("type") == "cancel":
+                            cancel_event.set()
+                            return
+                    except (json.JSONDecodeError, Exception):
+                        pass
+            except (WebSocketDisconnect, Exception):
+                cancel_event.set()
+
+        result_task = asyncio.create_task(
+            await_rclpy_future(goal_handle.get_result_async())
+        )
+        cancel_wait_task = asyncio.create_task(cancel_event.wait())
+        feedback_task = asyncio.create_task(_drain_feedback())
+        listen_task = asyncio.create_task(_listen_for_cancel())
+
+        # Wait for the result or a cancel/disconnect signal
+        await asyncio.wait(
+            [result_task, cancel_wait_task], return_when=asyncio.FIRST_COMPLETED
+        )
+
+        # Always clean up the feedback and listen tasks first
+        for task in (feedback_task, listen_task):
+            task.cancel()
+            try:
+                await task
+            except (asyncio.CancelledError, Exception):
                 pass
+
+        if cancel_event.is_set():
+            # Cancel was requested – send cancel to the action server and wait for it
+            result_task.cancel()
+            try:
+                await result_task
+            except (asyncio.CancelledError, Exception):
+                pass
+            try:
+                await await_rclpy_future(goal_handle.cancel_goal_async())
+            except Exception:
+                pass
+            goal_handle = None
+
+            # Drain any feedback that arrived before the cancel
+            while not feedback_queue.empty():
+                try:
+                    await websocket.send_json(feedback_queue.get_nowait())
+                except Exception:
+                    break
+
+            await websocket.send_json(
+                {
+                    "type": "result",
+                    "tree_result": "CANCELLED",
+                    "tree_identity": "",
+                    "message": "Mission cancelled by user.",
+                }
+            )
+            return
+
+        cancel_wait_task.cancel()
+        try:
+            await cancel_wait_task
+        except asyncio.CancelledError:
+            pass
 
         # Drain any remaining feedback
         while not feedback_queue.empty():
             await websocket.send_json(feedback_queue.get_nowait())
 
-        r = result_wrapper.result
+        r = result_task.result().result
         result_map = {0: "NOT_SET", 1: "SUCCESS", 2: "FAILURE"}
 
         await websocket.send_json(
@@ -130,7 +194,10 @@ async def mission_websocket(websocket: WebSocket):
             pass
     finally:
         if goal_handle is not None:
-            goal_handle.cancel_goal_async()
+            try:
+                await await_rclpy_future(goal_handle.cancel_goal_async())
+            except Exception:
+                pass
         if action_client is not None:
             action_client.destroy()
 

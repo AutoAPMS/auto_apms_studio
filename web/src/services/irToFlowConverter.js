@@ -98,18 +98,21 @@ export function IrToFlow(irNodes, nextId, inSubtree = false) {
           input_ports: (irNode.ports?.input || []).map((p) => ({
             name: p.name,
             type: p.type,
+            description: p.description,
             default: p.value ?? "",
             direction: "IN",
           })),
           output_ports: (irNode.ports?.output || []).map((p) => ({
             name: p.name,
             type: p.type,
+            description: p.description,
             default: p.value ?? "",
             direction: "OUT",
           })),
           input_output_ports: (irNode.ports?.inout || []).map((p) => ({
             name: p.name,
             type: p.type,
+            description: p.description,
             default: p.value ?? "",
             direction: "IN/OUT",
           })),

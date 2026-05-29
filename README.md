@@ -34,21 +34,16 @@ Once you are ready to move on, check out the [Installation Guide](https://autoap
 
 ## 🐳 Docker
 
-The frontend is available as a pre-built Docker image on the GitHub Container Registry:
+The AutoAPMS Studio web editor is available as a Docker image. You can use it to run the web editor in a containerized environment.
+Follow the [Installation Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/installation.html) to use the Docker image.
 
-```bash
+The instructions also include informations regarding SSL, nginx configuration, frontend/backend split hosts, the API key, firewall, and network hardening for a secure setup.
+
+You can also use the pre-built image on the GitHub Container Registry:
+
+```
 docker pull ghcr.io/autoapms/auto_apms_studio_web:latest
 ```
-
-Run the container and expose it on port 8080 (or any port you prefer):
-
-```bash
-docker run --rm -p 8080:80 ghcr.io/autoapms/auto_apms_studio_web:latest
-```
-
-Then open your browser and navigate to [http://localhost:8080/auto_apms_studio/](http://localhost:8080/auto_apms_studio/).
-
-> **Note:** The Docker image serves the standalone frontend only. You still need to run the backend from your existing ROS 2 workspace (see [Installation Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/installation.html)).
 
 ---
 

@@ -2,8 +2,8 @@
 
 Welcome to AutoAPMS Studio! This guide walks you through creating your first behavior tree.
 
-::: tip Already Installed?
-If you haven't installed AutoAPMS Studio yet, check the [Installation Guide](installation.md) first. 
+::: tip Not installed yet?
+If you have not installed AutoAPMS Studio yet, check the [Installation Guide](installation.md) first. 
 Or, you can use the [Live Demo](https://auto-apms-studio-d50829.pages.git-ce.rwth-aachen.de/) to try out AutoAPMS Studio without installing it.
 :::
 
@@ -12,7 +12,7 @@ Or, you can use the [Live Demo](https://auto-apms-studio-d50829.pages.git-ce.rwt
 After launching AutoAPMS Studio, open your browser and head to:
 
 ```
-http://localhost:5173
+http://localhost:5173/auto_apms_studio/
 ```
 
 You should then see the AutoAPMS Studio web-editor interface including the two major parts:

@@ -15,7 +15,7 @@ class ExecutorList(BaseModel):
     default: str
 
 
-@router.get("/", tags=["executors"], response_model=ExecutorList)
+@router.get("/executors/", tags=["executors"], response_model=ExecutorList)
 async def root() -> ExecutorList:
     ros_node = get_node()
     names = []
