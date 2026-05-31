@@ -7,7 +7,7 @@ existing workflows seamlessly.
 Install it in your existing ROS 2 environment to get started right-away. Or use the hybrid editor with offline fallback for "on the go" usage.
 
 <div class="custom-block tip" style="padding: 8px 12px;">  
-  <p style="margin: 0;">Just want to try it out? View the <a href="https://auto-apms-studio-d50829.pages.git-ce.rwth-aachen.de/">Live Demo</a>!</p>
+  <p style="margin: 0;">Just want to try it out? View the <a href="https://autoapms.github.io/auto_apms_studio/">Live Demo</a>!</p>
 </div>
 
 ## Use Cases

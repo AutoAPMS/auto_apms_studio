@@ -4,7 +4,7 @@ Welcome to AutoAPMS Studio! This guide walks you through creating your first beh
 
 ::: tip Not installed yet?
 If you have not installed AutoAPMS Studio yet, check the [Installation Guide](installation.md) first. 
-Or, you can use the [Live Demo](https://auto-apms-studio-d50829.pages.git-ce.rwth-aachen.de/) to try out AutoAPMS Studio without installing it.
+Or, you can use the [Live Demo](https://autoapms.github.io/auto_apms_studio/) to try out AutoAPMS Studio without installing it.
 :::
 
 ## Step 1: Open the Editor
