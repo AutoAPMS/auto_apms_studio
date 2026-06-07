@@ -62,6 +62,12 @@ export function flowToTreeData(nodes, edges) {
       });
     }
 
+    // Embed the inline registration option for plugin nodes (non-empty metadata_id) so that
+    // the executor can automatically resolve the manifest without it being specified separately.
+    if (nodeData.metadata_id && nodeData.nodeUniqueReference) {
+      attrs[`@__autoapms_reg_opt__parent`] = nodeData.nodeUniqueReference;
+    }
+
     // Get children sorted by x position (left to right = sibling order)
     const childIds = (childrenMap.get(nodeId) ?? []).sort((a, b) => {
       const nodeA = nodeMap.get(a);

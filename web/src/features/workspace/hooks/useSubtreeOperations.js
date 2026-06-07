@@ -4,6 +4,7 @@ import { useReactFlow } from "@xyflow/react";
 import { flowToTreeData } from "../../../services/flowToTreeConverter.js";
 import { createTreeAndUpdateStore } from "../../../services/treeService.js";
 import { getSubtree } from "../utils/subtreeUtils.js";
+import { useNodeContext } from "../../../context/NodeContext.jsx";
 
 export default function useSubtreeOperations(
   setNodes,
@@ -11,11 +12,11 @@ export default function useSubtreeOperations(
   getId,
   setTreeLayers,
   elkOptions,
-  getNodeDataByName,
   onLayout,
   onTreeChange
 ) {
   const { getNodes, getEdges } = useReactFlow();
+  const { getNodeDataByRef } = useNodeContext();
 
   const toggleSubtree = useCallback(
     (nodeId) => {
@@ -108,7 +109,7 @@ export default function useSubtreeOperations(
         position: actualNode.position,
         data: {
           nodeData: {
-            ...getNodeDataByName("SubTree"),
+            ...getNodeDataByRef("SubTree"),
             subtreeId: subtreeName,
           },
           layer: actualNode.data.layer,
@@ -148,7 +149,7 @@ export default function useSubtreeOperations(
       setNodes,
       setEdges,
       onTreeChange,
-      getNodeDataByName,
+      getNodeDataByRef,
     ]
   );
 

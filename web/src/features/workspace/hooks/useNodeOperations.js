@@ -14,14 +14,13 @@ export default function useNodeOperations(
   getId,
   treeLayers,
   elkOptions,
-  getNodeDataByName,
   setTreeLayers,
   onTreeChange,
   setError
 ) {
   const { screenToFlowPosition, getNodes, getEdges } = useReactFlow();
   const [dnDInfo, setDnDInfo] = useDnD();
-  const { nodeData: nodeModels } = useNodeContext();
+  const { nodeData: nodeModels, getNodeDataByRef, setError: setGlobalError } = useNodeContext();
 
   const onConnect = useCallback(
     (params) => {
@@ -55,11 +54,40 @@ export default function useNodeOperations(
 
       const snappedPosition = snapPositionToLayer(flowPosition, treeLayers);
 
-      const name = !dnDInfo.subtreeId ? dnDInfo.nodeName : "SubTree";
-      const nodeData = {
-        ...getNodeDataByName(name),
-        subtreeId: dnDInfo.subtreeId,
-      };
+      const uniqueRef = dnDInfo.subtreeId
+        ? "SubTree"
+        : dnDInfo.nodeUniqueReference;
+      const resolvedModel = getNodeDataByRef(uniqueRef);
+
+      if (!resolvedModel) {
+        setError(new Error(`Unknown node: ${uniqueRef}`));
+        return;
+      }
+
+      if (resolvedModel.pid) {
+        const conflict = getNodes()
+          .filter((n) => !n.data?.inSubtree)
+          .find((n) => {
+            const nd = n.data?.nodeData;
+            return (
+              nd &&
+              nd.node_name === resolvedModel.node_name &&
+              nd.nodeUniqueReference !== resolvedModel.nodeUniqueReference
+            );
+          });
+        if (conflict) {
+          setGlobalError(
+            new Error(
+              `Cannot insert '${resolvedModel.node_name}': a node from a different manifest` +
+                ` ('${conflict.data.nodeData.nodeUniqueReference}') is already on the canvas.`
+            )
+          );
+          setDnDInfo(null);
+          return;
+        }
+      }
+
+      const nodeData = { ...resolvedModel, subtreeId: dnDInfo.subtreeId };
 
       const newNode = {
         id: getId(),
@@ -72,18 +100,16 @@ export default function useNodeOperations(
           layer: snappedPosition.layer,
           expanded: false,
         },
-        type: name === "SubTree" ? "subtreeNode" : "behaviorTreeNode",
+        type: dnDInfo.subtreeId ? "subtreeNode" : "behaviorTreeNode",
         style: { opacity: 0 },
       };
 
       let subtreeNodes = [];
       let subtreeEdges = [];
 
-      if (name === "SubTree") {
-        const subtreeId = dnDInfo.subtreeId;
-
+      if (dnDInfo.subtreeId) {
         const trees = useStore.getState().trees;
-        const treeToLoad = trees.find((t) => t.id === subtreeId).treeData;
+        const treeToLoad = trees.find((t) => t.id === dnDInfo.subtreeId).treeData;
 
         let result;
 
@@ -122,13 +148,14 @@ export default function useNodeOperations(
       dnDInfo,
       screenToFlowPosition,
       treeLayers,
-      getNodeDataByName,
+      getNodeDataByRef,
       getId,
       getNodes,
       setNodes,
       setEdges,
       nodeModels,
       setError,
+      setGlobalError,
       setDnDInfo,
     ]
   );
@@ -178,13 +205,41 @@ export default function useNodeOperations(
   );
 
   const onSelectNode = useCallback(
-    (name, position, parent) => {
+    (nodeUniqueRef, position, parent) => {
       const flowPosition = screenToFlowPosition({
         x: position.x,
         y: position.y,
       });
 
       const snappedPosition = snapPositionToLayer(flowPosition, treeLayers);
+      const resolvedModel = getNodeDataByRef(nodeUniqueRef);
+
+      if (!resolvedModel) {
+        setError(new Error(`Unknown node: ${nodeUniqueRef}`));
+        return;
+      }
+
+      if (resolvedModel.pid) {
+        const conflict = getNodes()
+          .filter((n) => !n.data?.inSubtree)
+          .find((n) => {
+            const nd = n.data?.nodeData;
+            return (
+              nd &&
+              nd.node_name === resolvedModel.node_name &&
+              nd.nodeUniqueReference !== resolvedModel.nodeUniqueReference
+            );
+          });
+        if (conflict) {
+          setGlobalError(
+            new Error(
+              `Cannot insert '${resolvedModel.node_name}': a node from a different manifest` +
+                ` ('${conflict.data.nodeData.nodeUniqueReference}') is already on the canvas.`
+            )
+          );
+          return;
+        }
+      }
 
       const newNode = {
         id: getId(),
@@ -193,13 +248,10 @@ export default function useNodeOperations(
           y: snappedPosition.position.y,
         },
         data: {
-          nodeData: getNodeDataByName(name),
+          nodeData: resolvedModel,
           layer: snappedPosition.layer,
         },
-        type:
-          getNodeDataByName(name).node_name === "SubTree"
-            ? "subtreeNode"
-            : "behaviorTreeNode",
+        type: resolvedModel.node_name === "SubTree" ? "subtreeNode" : "behaviorTreeNode",
         style: { opacity: 0 },
       };
 
@@ -227,11 +279,13 @@ export default function useNodeOperations(
     [
       screenToFlowPosition,
       treeLayers,
-      getNodeDataByName,
+      getNodeDataByRef,
       setNodes,
       getId,
       getNodes,
       setEdges,
+      setError,
+      setGlobalError,
       onTreeChange,
     ]
   );

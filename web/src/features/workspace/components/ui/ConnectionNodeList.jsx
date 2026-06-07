@@ -48,14 +48,14 @@ function ConnectionNodeList({ nodeList, closeNodeList, onSelect }) {
               <NodeItem
                 onClick={() => {
                   onSelect(
-                    node.node_name,
+                    node.nodeUniqueReference,
                     { x: nodeList.x, y: nodeList.y },
                     nodeList.parent
                   );
                   closeNodeList();
                   setSearchText("");
                 }}
-                key={`${node.package}-${node.node_name}`}
+                key={`${node.package}-${node.metadata_id}-${node.node_name}`}
                 node={node}
               />
             ))}

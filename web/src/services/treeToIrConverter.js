@@ -46,10 +46,16 @@ export function treeToIR(treeJson, nodeModels, trees, includeSubtrees = true) {
     throw new Error("Invalid BehaviorTree JSON");
   }
 
-  /**
-   * Fast lookup map for node models by name.
-   */
-  const modelMap = new Map(nodeModels.map((m) => [m.node_name, m]));
+  // Single lookup map keyed by nodeUniqueReference.
+  // Native nodes (empty metadata_id) use node_name as their unique reference, so they
+  // are found by their tag name when no inline registration attribute is present.
+  const modelByRef = new Map(
+    nodeModels.map((m) => [
+      m.nodeUniqueReference ??
+        (m.pid && m.metadata_id ? `${m.pid}.${m.node_name}` : m.node_name),
+      m,
+    ])
+  );
 
   let idCounter = 0;
   const nextId = () => `n${idCounter++}`;
@@ -96,7 +102,8 @@ export function treeToIR(treeJson, nodeModels, trees, includeSubtrees = true) {
     const childrenRaw = nodeObj[nodeName] || [];
     const rawAttrs = nodeObj[":@"] || {};
 
-    const model = modelMap.get(nodeName);
+    const uniqueRef = rawAttrs["@__autoapms_reg_opt__parent"] ?? nodeName;
+    const model = modelByRef.get(uniqueRef);
     if (!model) {
       throw new Error(`Unknown node model: ${nodeName}`);
     }
@@ -175,6 +182,7 @@ export function treeToIR(treeJson, nodeModels, trees, includeSubtrees = true) {
       id: nodeID,
       type: nodeName,
       node_type: model.node_type,
+      nodeUniqueReference: model.nodeUniqueReference ?? uniqueRef,
       ports,
       attributes,
       subtreeId: subtreeId,
