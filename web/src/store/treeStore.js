@@ -18,7 +18,10 @@ import { applyEntryTreeIdToSavedJson } from "../services/jsonService.js";
  * Backend configuration:
  * @property {string} backendIp - Backend IP address (persisted in sessionStorage).
  * @property {string} backendPort - Backend port (persisted in sessionStorage).
- * @property {string} backendHost - Derived backend host URL (`http://ip:port`, reconstructed on load).
+ * @property {string} backendProtocol - Protocol (http/https) chosen dynamically based on window.location.protocol.
+ * @property {string} backendHost - Derived backend host URL (e.g., `https://ip:port` for HTTPS origin, `http://ip:port` for HTTP).
+ *                                   Protocol is automatically selected to match the current page's protocol (HTTPS/HTTP)
+ *                                   to avoid Mixed Content Policy violations.
  *
  * Actions:
  * @property {Function} setSavedJson - Updates the stored raw JSON.
@@ -48,25 +51,36 @@ export const useStore = create(
 
       backendIp: "localhost",
       backendPort: "8000",
+      backendProtocol: "http",
       backendHost: "http://localhost:8000",
 
       nodeFetchTrigger: 0,
       triggerNodeFetch: () =>
         set((state) => ({ nodeFetchTrigger: state.nodeFetchTrigger + 1 })),
 
-      setBackendIp: (ip) => {
-        const { backendPort } = get();
-        set({
-          backendIp: ip,
-          backendHost: `http://${ip}:${backendPort}`,
-        });
+      getBackendProtocol: () => {
+        if (typeof window !== "undefined") {
+          return window.location.protocol === "https:" ? "https" : "http";
+        }
+        return "http";
       },
 
+      setBackendIp: (ip) => {
+        const state = get();
+        const protocol = state.getBackendProtocol();
+        set({
+          backendIp: ip,
+          backendProtocol: protocol,
+          backendHost: `${protocol}://${ip}:${state.backendPort}`,
+        });},
+
       setBackendPort: (port) => {
-        const { backendIp } = get();
+        const state = get();
+        const protocol = state.getBackendProtocol();
         set({
           backendPort: port,
-          backendHost: `http://${backendIp}:${port}`,
+          backendProtocol: protocol,
+          backendHost: `${protocol}://${state.backendIp}:${port}`,
         });
       },
 
@@ -107,6 +121,7 @@ export const useStore = create(
         savedJson: state.savedJson,
         backendIp: state.backendIp,
         backendPort: state.backendPort,
+        backendProtocol: state.backendProtocol,
         treeManifests: state.treeManifests,
         selectedTree: state.selectedTree,
         selectedTreeId: state.selectedTreeId,
@@ -114,9 +129,10 @@ export const useStore = create(
 
       onRehydrateStorage: () => (state) => {
         if (state) {
-          state.backendHost = `http://${state.backendIp}:${state.backendPort}`;
-        }
-      },
+          const protocol = typeof window !== "undefined" && window.location.protocol === "https:" ? "https" : "http";
+          state.backendProtocol = protocol;
+          state.backendHost = `${protocol}://${state.backendIp}:${state.backendPort}`;
+        }},
     }
   )
 );
