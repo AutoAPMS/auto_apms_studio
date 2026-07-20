@@ -4,7 +4,7 @@ AutoAPMS Studio is available as a **ROS 2 package** or as a **standalone web edi
 We recommend installing AutoAPMS Studio in a ROS 2 environment along with [AutoAPMS](https://autoapms.github.io/auto-apms-guide/).
 
 <div class="custom-block tip" style="padding: 8px 12px;">  
-  <p style="margin: 0;">Just want to try it out? View the <a href="https://auto-apms-studio-d50829.pages.git-ce.rwth-aachen.de/">Live Demo</a>!</p>
+  <p style="margin: 0;">Just want to try it out? View the <a href="https://autoapms.github.io/auto_apms_studio/">Live Demo</a>!</p>
 </div>
 
 ### Prerequisites

@@ -15,7 +15,7 @@ hero:
       link: /user-guide/introduction/getting-started
     - theme: alt
       text: Live Demo
-      link: https://auto-apms-studio-d50829.pages.git-ce.rwth-aachen.de/
+      link: https://autoapms.github.io/auto_apms_studio/
     - theme: alt
       text: What is AutoAPMS Studio?
       link: /user-guide/introduction/introduction
