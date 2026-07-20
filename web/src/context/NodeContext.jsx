@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 import { useFetchNodes } from "../features/sidebar/hooks/useFetchNodes.js";
 
 /**
@@ -25,7 +25,6 @@ export const NodeProvider = ({ children }) => {
     status,
   } = useFetchNodes();
   const [manualError, setManualError] = useState(null);
-  const nodeData = nodes;
 
   const error = manualError || fetchError;
 
@@ -34,15 +33,30 @@ export const NodeProvider = ({ children }) => {
     clearFetchError();
   };
 
-  const getNodeDataByName = (nodeName) => {
-    return nodeData.find((node) => node.node_name === nodeName);
+  // Augment each model with a stable, unique reference key.
+  // Plugin nodes (non-empty metadata_id): "<package>::<metadata_id>.<node_name>"
+  // Native nodes (empty metadata_id):    "<node_name>"  (always globally unique in BT.CPP)
+  const nodeData = useMemo(
+    () =>
+      nodes.map((n) => ({
+        ...n,
+        nodeUniqueReference:
+          n.pid && n.metadata_id ? `${n.pid}.${n.node_name}` : n.node_name,
+      })),
+    [nodes]
+  );
+
+  // Unambiguous lookup by nodeUniqueReference.
+  const getNodeDataByRef = (ref) => {
+    if (!ref) return undefined;
+    return nodeData.find((n) => n.nodeUniqueReference === ref);
   };
 
   return (
     <NodeContext.Provider
       value={{
         nodeData,
-        getNodeDataByName,
+        getNodeDataByRef,
         error,
         clearError,
         setError: setManualError,

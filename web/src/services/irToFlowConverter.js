@@ -94,6 +94,7 @@ export function IrToFlow(irNodes, nextId, inSubtree = false) {
         nodeData: {
           node_name: irNode.type,
           node_type: irNode.node_type,
+          nodeUniqueReference: irNode.nodeUniqueReference ?? irNode.type,
           subtreeId: irNode.subtreeId ?? null,
           input_ports: (irNode.ports?.input || []).map((p) => ({
             name: p.name,

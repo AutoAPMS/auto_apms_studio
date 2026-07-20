@@ -18,8 +18,8 @@ export default function NodeItem({ node, onClick }) {
   const [, setDnDInfo] = useDnD();
   const [tooltip, setTooltip] = useState(null);
 
-  const onDragStart = (event, nodeName) => {
-    setDnDInfo({ nodeName: nodeName });
+  const onDragStart = (event, draggedNode) => {
+    setDnDInfo({ nodeUniqueReference: draggedNode.nodeUniqueReference });
     event.dataTransfer.effectAllowed = "move";
   };
 
@@ -53,7 +53,7 @@ export default function NodeItem({ node, onClick }) {
         className="flex flex-row gap-2 border items-center rounded-sm mt-1 pl-1.5 py-1 px-1.5 cursor-grab"
         onClick={onClick}
         draggable
-        onDragStart={(event) => onDragStart(event, node.node_name)}
+        onDragStart={(event) => onDragStart(event, node)}
         style={{
           borderColor: config.color,
         }}

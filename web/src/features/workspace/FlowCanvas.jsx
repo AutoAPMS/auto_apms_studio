@@ -8,8 +8,6 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
-import { useNodeContext } from "../../context/NodeContext.jsx";
-
 import BehaviorTreeNode from "./components/nodes/BehaviorTreeNode.jsx";
 import RootNode from "./components/nodes/RootNode.jsx";
 import SubtreeNode from "./components/nodes/SubtreeNode.jsx";
@@ -56,7 +54,6 @@ export default function FlowCanvas({
   onTreeChange,
   getId,
 }) {
-  const { getNodeDataByName } = useNodeContext();
   const { getEdges } = useReactFlow();
   const [error, setError] = useState(null);
   const { nodeList, onConnectEnd, closeNodeList, handleMouseDown } =
@@ -116,7 +113,6 @@ export default function FlowCanvas({
     getId,
     setTreeLayers,
     elkOptions,
-    getNodeDataByName,
     onLayout,
     onTreeChange
   );
@@ -133,7 +129,6 @@ export default function FlowCanvas({
     getId,
     treeLayers,
     elkOptions,
-    getNodeDataByName,
     setTreeLayers,
     onTreeChange,
     setError
