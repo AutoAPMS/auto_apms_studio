@@ -64,7 +64,8 @@ function resolveRemote() {
  * 1. Explicit environment variables (e.g. passed as Docker build args, where
  *    no .git directory is available): AUTO_APMS_STUDIO_GIT_SHA,
  *    AUTO_APMS_STUDIO_GIT_TAG and AUTO_APMS_STUDIO_REPO_URL.
- * 2. GitHub Actions environment (commit is pushed by definition).
+ * 2. GitHub Actions environment (commit is pushed by definition). The
+ *    triggering ref is only used if no commit is given explicitly.
  * 3. The local git repository.
  *
  * A link is only provided if the commit is known to exist upstream.
@@ -76,10 +77,13 @@ export function resolveVersionInfo(env = process.env) {
   const isRepo = git(["rev-parse", "--is-inside-work-tree"]) === "true";
   const isGitHubActions = env.GITHUB_ACTIONS === "true";
 
+  // An explicit commit takes precedence over the ref that triggered the workflow
+  const useGitHubRef = isGitHubActions && !env.AUTO_APMS_STUDIO_GIT_SHA;
+
   let sha =
-    env.AUTO_APMS_STUDIO_GIT_SHA || (isGitHubActions && env.GITHUB_SHA) || null;
+    env.AUTO_APMS_STUDIO_GIT_SHA || (useGitHubRef && env.GITHUB_SHA) || null;
   let tag = env.AUTO_APMS_STUDIO_GIT_TAG || null;
-  if (!tag && isGitHubActions && env.GITHUB_REF_TYPE === "tag")
+  if (!tag && useGitHubRef && env.GITHUB_REF_TYPE === "tag")
     tag = env.GITHUB_REF_NAME;
 
   let repoUrl = env.AUTO_APMS_STUDIO_REPO_URL || null;

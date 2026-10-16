@@ -1,0 +1,84 @@
+name: Deploy Pages
+
+# Publishes three versions of the frontend side by side on GitHub Pages:
+#   /auto_apms_studio/          latest release
+#   /auto_apms_studio/master/   latest commit on master
+#   /auto_apms_studio/develop/  latest commit on develop
+#   /auto_apms_studio/docs/     documentation (master)
+#
+# GitHub Pages hosts a single site per repository, so every run rebuilds all versions.
+# The workflow is triggered via workflow_run, which always runs in the context of the
+# default branch and thus satisfies the protection rules of the github-pages environment.
+
+on:
+  workflow_run:
+    workflows: ["CI Frontend", "Build and Release"]
+    types: [completed]
+  workflow_dispatch:
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy_pages:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       (github.event.workflow_run.name == 'Build and Release' ||
+        (github.event.workflow_run.event == 'push' &&
+         contains(fromJSON('["master", "develop"]'), github.event.workflow_run.head_branch))))
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # All branches and tags are required
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: |
+            web/package-lock.json
+            package-lock.json
+
+      - name: Determine latest release
+        id: release
+        run: |
+          tag="$(git tag --list 'v*' --sort=-v:refname | head -n1)"
+          echo "Latest release: ${tag:-none, falling back to master}"
+          echo "ref=${tag:-origin/master}" >> "$GITHUB_OUTPUT"
+
+      - name: Build latest release
+        run: bash .github/scripts/build_pages_frontend.sh "${{ steps.release.outputs.ref }}" /auto_apms_studio/ public
+
+      - name: Build master
+        run: bash .github/scripts/build_pages_frontend.sh origin/master /auto_apms_studio/master/ public/master
+
+      - name: Build develop
+        run: bash .github/scripts/build_pages_frontend.sh origin/develop /auto_apms_studio/develop/ public/develop
+
+      - name: Build docs
+        run: |
+          git worktree add --detach "$RUNNER_TEMP/docs" origin/master
+          cd "$RUNNER_TEMP/docs"
+          npm ci
+          npm run docs:build
+          mkdir -p "$GITHUB_WORKSPACE/public/docs"
+          cp -a docs/.vitepress/dist/. "$GITHUB_WORKSPACE/public/docs/"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

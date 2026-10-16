@@ -59,4 +59,19 @@ describe("resolveVersionInfo", () => {
       `https://github.com/AutoAPMS/auto_apms_studio/tree/${githubEnv.GITHUB_SHA}`
     );
   });
+
+  it("prefers an explicitly given commit over the triggering ref", () => {
+    const sha = "fedcba9876543210fedcba9876543210fedcba98";
+    const info = resolveVersionInfo({
+      ...githubEnv,
+      GITHUB_REF_TYPE: "tag",
+      GITHUB_REF_NAME: "v9.9.9",
+      AUTO_APMS_STUDIO_GIT_SHA: sha,
+    });
+    expect(info.sha).toBe(sha);
+    expect(info.tag).toBeNull();
+    expect(info.url).toBe(
+      `https://github.com/AutoAPMS/auto_apms_studio/tree/${sha}`
+    );
+  });
 });

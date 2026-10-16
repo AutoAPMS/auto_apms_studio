@@ -28,6 +28,8 @@ Built specifically for the [**AutoAPMS framework**](https://autoapms.github.io/a
 
 Use our [Live Demo](https://autoapms.github.io/auto_apms_studio/) to try out AutoAPMS Studio without installing it. The demo includes a pre-loaded set of node models and example Behavior Trees to explore.
 
+The Live Demo always runs the latest release. Previews of the latest commits on [`master`](https://autoapms.github.io/auto_apms_studio/master/) and [`develop`](https://autoapms.github.io/auto_apms_studio/develop/) are deployed as well.
+
 Once you are ready to move on, check out the [Installation Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/installation.html) to install AutoAPMS Studio in your existing ROS 2 environment. Then, head to the [Getting Started Guide](https://autoapms.github.io/auto_apms_studio/docs/user-guide/introduction/getting-started.html) to create and export your first Behavior Tree or carry over your existing Behavior Trees.
 
 ---
