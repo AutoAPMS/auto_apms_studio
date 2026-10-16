@@ -171,6 +171,14 @@ cd ~/auto_apms_studio/web
 docker build -t auto-apms-studio-web .
 ```
 
+The version indicator at the bottom of the sidebar is derived from git at build time. Since the Docker build context contains no `.git` directory, pass the commit (and optionally the tag) as build arguments if you want it to be displayed:
+
+```bash
+docker build -t auto-apms-studio-web \
+  --build-arg AUTO_APMS_STUDIO_GIT_SHA=$(git rev-parse HEAD) \
+  --build-arg AUTO_APMS_STUDIO_GIT_TAG=$(git describe --tags --exact-match 2>/dev/null) .
+```
+
 You can also use the pre-built Docker image from the GitHub Container Registry:
 
 ```bash

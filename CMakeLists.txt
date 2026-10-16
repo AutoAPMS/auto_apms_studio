@@ -26,7 +26,20 @@ if(BUILD_FRONTEND)
     "${FRONTEND_SOURCE_DIR}/index.html"
     "${FRONTEND_SOURCE_DIR}/package.json"
     "${FRONTEND_SOURCE_DIR}/vite.config.js"
+    "${FRONTEND_SOURCE_DIR}/versionInfo.js"
   )
+
+  # Rebuild when HEAD moves (commit, checkout, ...) to keep the version indicator up to date
+  execute_process(
+    COMMAND git rev-parse --absolute-git-dir
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    OUTPUT_VARIABLE FRONTEND_GIT_DIR
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    ERROR_QUIET
+  )
+  if(FRONTEND_GIT_DIR AND EXISTS "${FRONTEND_GIT_DIR}/logs/HEAD")
+    list(APPEND FRONTEND_SOURCES "${FRONTEND_GIT_DIR}/logs/HEAD")
+  endif()
 
   # Custom command to install deps and build directly from the source directory
   # NOTE: Vite build is run twice as a workaround for a caching issue where the first build
