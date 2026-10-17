@@ -89,3 +89,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            AUTO_APMS_STUDIO_GIT_SHA=${{ github.sha }}
+            AUTO_APMS_STUDIO_GIT_TAG=${{ github.ref_name }}
+            AUTO_APMS_STUDIO_REPO_URL=${{ github.server_url }}/${{ github.repository }}

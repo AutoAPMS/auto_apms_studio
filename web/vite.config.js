@@ -1,10 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { resolveVersionInfo } from './versionInfo.js'
 
 // https://vite.dev/config/
 export default defineConfig({
   base: '/auto_apms_studio/',
+  define: {
+    __APP_VERSION__: JSON.stringify(resolveVersionInfo()),
+  },
   plugins: [
       tailwindcss(),
       react()
