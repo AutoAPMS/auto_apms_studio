@@ -1,8 +1,10 @@
 name: CI Backend
 
+# Feature branches are checked via their PR, so pushes only trigger CI on the main branches.
+# Running on all pushes as well would run every check twice for PRs from this repository.
 on:
   push:
-    branches: ["**"]
+    branches: [master, develop]
   pull_request:
     branches: ["**"]
 
