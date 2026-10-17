@@ -49,51 +49,6 @@ jobs:
       - name: Run tests
         run: npm run test:run
 
-  deploy_pages:
-    name: Deploy to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: [format_check_frontend, frontend_test]
-    if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch) && github.event_name == 'push'
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-          cache: npm
-          cache-dependency-path: web/package-lock.json
-
-      - name: Build frontend
-        working-directory: web
-        run: |
-          npm install
-          npm run build
-
-      - name: Build docs
-        run: |
-          npm install
-          npm run docs:build
-
-      - name: Assemble pages output
-        run: |
-          mkdir -p public
-          cp -a web/dist/. public/
-          cp -a docs/.vitepress/dist/. public/docs/
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: public
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
   docker_build_push_frontend:
     name: Build and push frontend Docker image for master and develop
     runs-on: ubuntu-latest
@@ -104,6 +59,12 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch tags for the version indicator
+
+      - name: Determine git tag
+        id: git_tag
+        run: echo "tag=$(git describe --tags --exact-match HEAD 2>/dev/null || true)" >> "$GITHUB_OUTPUT"
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -136,3 +97,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            AUTO_APMS_STUDIO_GIT_SHA=${{ github.sha }}
+            AUTO_APMS_STUDIO_GIT_TAG=${{ steps.git_tag.outputs.tag }}
+            AUTO_APMS_STUDIO_REPO_URL=${{ github.server_url }}/${{ github.repository }}

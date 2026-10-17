@@ -72,7 +72,8 @@ export const useStore = create(
           backendIp: ip,
           backendProtocol: protocol,
           backendHost: `${protocol}://${ip}:${state.backendPort}`,
-        });},
+        });
+      },
 
       setBackendPort: (port) => {
         const state = get();
@@ -129,10 +130,15 @@ export const useStore = create(
 
       onRehydrateStorage: () => (state) => {
         if (state) {
-          const protocol = typeof window !== "undefined" && window.location.protocol === "https:" ? "https" : "http";
+          const protocol =
+            typeof window !== "undefined" &&
+            window.location.protocol === "https:"
+              ? "https"
+              : "http";
           state.backendProtocol = protocol;
           state.backendHost = `${protocol}://${state.backendIp}:${state.backendPort}`;
-        }},
+        }
+      },
     }
   )
 );

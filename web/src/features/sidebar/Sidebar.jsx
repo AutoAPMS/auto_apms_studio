@@ -2,6 +2,7 @@ import { useState } from "react";
 import SidebarHeader from "./components/SidebarHeader.jsx";
 import SidebarFooter from "./components/SidebarFooter.jsx";
 import ModeSwitcher from "./components/ModeSwitcher.jsx";
+import VersionIndicator from "./components/VersionIndicator.jsx";
 
 import CreateView from "./views/CreateView/CreateView.jsx";
 import DeployView from "./views/DeployView/DeployView.jsx";
@@ -38,6 +39,10 @@ export default function Sidebar() {
 
         <div className="flex-none h-12 p-2">
           <SidebarFooter />
+        </div>
+
+        <div className="flex-none pb-2">
+          <VersionIndicator />
         </div>
       </div>
     </div>

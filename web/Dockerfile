@@ -4,6 +4,10 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci
 COPY . .
+# Version info shown in the UI (no .git directory is available in the build context)
+ARG AUTO_APMS_STUDIO_GIT_SHA
+ARG AUTO_APMS_STUDIO_GIT_TAG
+ARG AUTO_APMS_STUDIO_REPO_URL
 RUN npm run build
 
 # Stage 2: Serve
