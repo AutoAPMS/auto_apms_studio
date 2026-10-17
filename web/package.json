@@ -1,8 +1,8 @@
 {
   "name": "auto_apms_studio-frontend",
   "private": true,
-  "version": "0.2.0",
-  "description": "Frontend for TPSE Behavior Trees - ROS Node Integration",
+  "version": "0.3.0",
+  "description": "Frontend for AutoAPMS Studio",
   "type": "module",
   "scripts": {
     "dev": "vite",

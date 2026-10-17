@@ -1,8 +1,10 @@
 name: CI Frontend
 
+# Feature branches are checked via their PR, so pushes only trigger CI on the main branches.
+# Running on all pushes as well would run every check twice for PRs from this repository.
 on:
   push:
-    branches: ["**"]
+    branches: [master, develop]
   pull_request:
     branches: ["**"]
 
@@ -67,6 +69,8 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write # Sign the build provenance attestation
+      attestations: write
     steps:
       - uses: actions/checkout@v4
         with:
@@ -75,6 +79,10 @@ jobs:
       - name: Determine git tag
         id: git_tag
         run: echo "tag=$(git describe --tags --exact-match HEAD 2>/dev/null || true)" >> "$GITHUB_OUTPUT"
+
+      - name: Determine image name
+        id: image
+        run: echo "name=ghcr.io/${GITHUB_REPOSITORY_OWNER,,}/auto_apms_studio_web" >> "$GITHUB_OUTPUT"
 
       - name: Log in to GHCR
         uses: docker/login-action@v3
@@ -93,21 +101,30 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository_owner }}/auto_apms_studio_web
+          images: ${{ steps.image.outputs.name }}
           tags: |
             type=raw,value=latest,enable=${{ github.ref == 'refs/heads/master' }}
             type=raw,value=develop,enable=${{ github.ref == 'refs/heads/develop' }}
             type=ref,event=tag
 
       - name: Build and push
+        id: push
         uses: docker/build-push-action@v6
         with:
           context: web
           push: true
           platforms: linux/amd64,linux/arm64
+          provenance: false # Attested by a separate step, avoids an "unknown/unknown" manifest in the registry
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             AUTO_APMS_STUDIO_GIT_SHA=${{ github.sha }}
             AUTO_APMS_STUDIO_GIT_TAG=${{ steps.git_tag.outputs.tag }}
             AUTO_APMS_STUDIO_REPO_URL=${{ github.server_url }}/${{ github.repository }}
+
+      # Signed provenance, verifiable with: gh attestation verify oci://<image>:<tag> --owner AutoAPMS
+      - name: Attest build provenance
+        uses: actions/attest@v4
+        with:
+          subject-name: ${{ steps.image.outputs.name }}
+          subject-digest: ${{ steps.push.outputs.digest }}

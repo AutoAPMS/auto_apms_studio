@@ -4,15 +4,16 @@ Thanks for your interest in contributing to AutoAPMS Studio! This page describes
 
 ## Quick workflow
 
-1. Fork the repo and create a feature branch:
+1. Fork the repo and create a feature branch based on `develop`:
 
 ```bash
-git checkout -b feat/<short-description>
+git switch develop
+git switch -c feat/<short-description>
 ```
 
 2. Implement your changes and add tests.
 3. Run tests and linters locally.
-4. Push your branch and open a Merge Request (PR) against `master`. Describe the change, rationale and testing steps.
+4. Push your branch and open a Pull Request (PR) against `develop`. Describe the change, rationale and testing steps. `master` only receives releases (see [Release process](./guidelines.md#release-process)).
 
 ## Review & testing
 
