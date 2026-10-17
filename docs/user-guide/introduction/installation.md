@@ -185,6 +185,12 @@ You can also use the pre-built Docker image from the GitHub Container Registry:
 docker pull ghcr.io/autoapms/auto_apms_studio_web:latest
 ```
 
+Images are published with a signed build provenance attestation. To verify that an image was built by the official CI from this repository, use the [GitHub CLI](https://cli.github.com/):
+
+```bash
+gh attestation verify oci://ghcr.io/autoapms/auto_apms_studio_web:latest --owner AutoAPMS
+```
+
 The following environment variables can be overridden at runtime:
 
 | Variable                        | Default          | Description                           |
