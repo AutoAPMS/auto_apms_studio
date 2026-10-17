@@ -49,6 +49,16 @@ jobs:
       - name: Run tests
         run: npm run test:run
 
+  deploy_pages:
+    name: Deploy to GitHub Pages
+    needs: [format_check_frontend, frontend_test]
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop')
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/deploy_pages.yml
+
   docker_build_push_frontend:
     name: Build and push frontend Docker image for master and develop
     runs-on: ubuntu-latest
